@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FacturacionLiquidacion
 {
-    class Liquidacion
+    public class Liquidacion
     {
         DateTime fecha;
         String loteMBA;
@@ -22,18 +22,174 @@ namespace FacturacionLiquidacion
         String numeroliquidacion;
         IList<Guia> guias;
 
-        public DateTime Fecha { get => fecha; set => fecha = value; }
-        public string LoteMBA { get => loteMBA; set => loteMBA = value; }
-        public string Op { get => op; set => op = value; }
-        public double Lbstotales { get => lbstotales; set => lbstotales = value; }
-        public double Kgtotales { get => kgtotales; set => kgtotales = value; }
-        public int Untotales { get => untotales; set => untotales = value; }
-        public string Empacadora { get => empacadora; set => empacadora = value; }
-        public string Especie { get => especie; set => especie = value; }
-        public string Tsiembra { get => tsiembra; set => tsiembra = value; }
-        public string Numeroliquidacion { get => numeroliquidacion; set => numeroliquidacion = value; }
-        public string Piscina { get => piscina; set => piscina = value; }
-        public string Ciclo { get => ciclo; set => ciclo = value; }
+        public DateTime Fecha
+        {
+            get
+            {
+                return fecha;
+            }
+
+            set
+            {
+                fecha = value;
+            }
+        }
+
+        public string LoteMBA
+        {
+            get
+            {
+                return loteMBA;
+            }
+
+            set
+            {
+                loteMBA = value;
+            }
+        }
+
+        public string Piscina
+        {
+            get
+            {
+                return piscina;
+            }
+
+            set
+            {
+                piscina = value;
+            }
+        }
+
+        public string Ciclo
+        {
+            get
+            {
+                return ciclo;
+            }
+
+            set
+            {
+                ciclo = value;
+            }
+        }
+
+        public string Op
+        {
+            get
+            {
+                return op;
+            }
+
+            set
+            {
+                op = value;
+            }
+        }
+
+        public double Lbstotales
+        {
+            get
+            {
+                return lbstotales;
+            }
+
+            set
+            {
+                lbstotales = value;
+            }
+        }
+
+        public double Kgtotales
+        {
+            get
+            {
+                return kgtotales;
+            }
+
+            set
+            {
+                kgtotales = value;
+            }
+        }
+
+        public int Untotales
+        {
+            get
+            {
+                return untotales;
+            }
+
+            set
+            {
+                untotales = value;
+            }
+        }
+
+        public string Empacadora
+        {
+            get
+            {
+                return empacadora;
+            }
+
+            set
+            {
+                empacadora = value;
+            }
+        }
+
+        public string Especie
+        {
+            get
+            {
+                return especie;
+            }
+
+            set
+            {
+                especie = value;
+            }
+        }
+
+        public string Tsiembra
+        {
+            get
+            {
+                return tsiembra;
+            }
+
+            set
+            {
+                tsiembra = value;
+            }
+        }
+
+        public string Numeroliquidacion
+        {
+            get
+            {
+                return numeroliquidacion;
+            }
+
+            set
+            {
+                numeroliquidacion = value;
+            }
+        }
+
+        internal IList<Guia> Guias
+        {
+            get
+            {
+                return guias;
+            }
+
+            set
+            {
+                guias = value;
+            }
+        }
 
         public IList<Liquidacion> FillList(DataSet guias)
         {
@@ -48,7 +204,7 @@ namespace FacturacionLiquidacion
                         lrow.Fecha = Convert.ToDateTime(dr["FECHA"].ToString());
                         lrow.LoteMBA = dr["Lote MBA"].ToString();
                         lrow.Op = dr["OP"].ToString();
-                        lrow.numeroliquidacion = dr["Liquidacion"].ToString();
+                        lrow.Numeroliquidacion = dr["Liquidacion"].ToString();
                         lrow.Empacadora = dr["EMPACADORA"].ToString();
                         lrow.Especie = dr["Especie"].ToString();
                         lrow.Tsiembra = dr["T# Siem"].ToString();
@@ -60,11 +216,15 @@ namespace FacturacionLiquidacion
                         grow.Un = Convert.ToInt32(dr["UNIDAD"]);
                         grow.Numeroguia = dr["# Guia"].ToString();
                         grow.Responsable = dr["RESPON#"].ToString();
+                        grow.Piscina = dr["PISC"].ToString();
+                        grow.Ciclo = dr["CICLO"].ToString();
+                        grow.Empacadora = dr["EMPACADORA"].ToString();
+                        grow.Fechaguia = Convert.ToDateTime(dr["FECHA"].ToString());
                         lrow.Kgtotales = grow.Kg;
                         lrow.Lbstotales = grow.Lbs;
                         lrow.Untotales = grow.Un;
-                        lrow.guias = new List<Guia>();
-                        lrow.guias.Add(grow);
+                        lrow.Guias = new List<Guia>();
+                        lrow.Guias.Add(grow);
                         tmp.Add(lrow);
                     } else
                     {
@@ -75,7 +235,7 @@ namespace FacturacionLiquidacion
                             lrow.Fecha = Convert.ToDateTime(dr["FECHA"].ToString());
                             lrow.LoteMBA = dr["Lote MBA"].ToString();
                             lrow.Op = dr["OP"].ToString();
-                            lrow.numeroliquidacion = dr["Liquidacion"].ToString();
+                            lrow.Numeroliquidacion = dr["Liquidacion"].ToString();
                             lrow.Empacadora = dr["EMPACADORA"].ToString();
                             lrow.Especie = dr["Especie"].ToString();
                             lrow.Tsiembra = dr["T# Siem"].ToString();
@@ -87,11 +247,15 @@ namespace FacturacionLiquidacion
                             grow.Un = Convert.ToInt32(dr["UNIDAD"]);
                             grow.Numeroguia = dr["# Guia"].ToString();
                             grow.Responsable = dr["RESPON#"].ToString();
+                            grow.Piscina = dr["PISC"].ToString();
+                            grow.Ciclo = dr["CICLO"].ToString();
+                            grow.Empacadora = dr["EMPACADORA"].ToString();
+                            grow.Fechaguia = Convert.ToDateTime(dr["FECHA"].ToString());
                             lrow.Kgtotales += grow.Kg;
                             lrow.Lbstotales += grow.Lbs;
                             lrow.Untotales += grow.Un;
-                            lrow.guias = new List<Guia>();
-                            lrow.guias.Add(grow);
+                            lrow.Guias = new List<Guia>();
+                            lrow.Guias.Add(grow);
                             tmp.Add(lrow);
                         }else
                         {
@@ -101,11 +265,15 @@ namespace FacturacionLiquidacion
                             grow.Un = Convert.ToInt32(dr["UNIDAD"]);
                             grow.Numeroguia = dr["# Guia"].ToString();
                             grow.Responsable = dr["RESPON#"].ToString();
+                            grow.Piscina = dr["PISC"].ToString();
+                            grow.Ciclo = dr["CICLO"].ToString();
+                            grow.Empacadora = dr["EMPACADORA"].ToString();
+                            grow.Fechaguia = Convert.ToDateTime(dr["FECHA"].ToString());
                             lrow.Kgtotales += grow.Kg;
                             lrow.Lbstotales += grow.Lbs;
                             lrow.Untotales += grow.Un;
                             //lrow.guias = new List<Guia>();
-                            lrow.guias.Add(grow);                            
+                            lrow.Guias.Add(grow);                            
                             //tmp.Add(lrow);
                         }
                     }
@@ -118,29 +286,58 @@ namespace FacturacionLiquidacion
     {
         DateTime fechaguia;
         String numeroguia;
+        string piscina;
+        string ciclo;
+        string empacadora;
         Double lbs;
         Double kg;
         Int32 un;
         String responsable;
+        int liquidacion;
+        int estado_guia;
 
-        public DateTime Fechaguia { get => fechaguia; set => fechaguia = value; }
-        public string Numeroguia { get => numeroguia; set => numeroguia = value; }
-        public double Lbs { get => lbs; set => lbs = value; }
-        public double Kg { get => kg; set => kg = value; }
-        public int Un { get => un; set => un = value; }
-        public string Responsable { get => responsable; set => responsable = value; }
+        public string Piscina { get; set; }
+
+        public string Ciclo { get; set; }
+        public string Empacadora { get; set; }
+
+        public int Liquidacion { get; set; }
+
+        public int Estado_Guia { get; set; }
+
+        public DateTime Fechaguia { get; set; }
+
+        public string Numeroguia { get; set; }
+
+        public double Lbs { get; set; }
+
+
+        public double Kg { get; set; }
+
+        public int Un { get; set; }
+
+        public string Responsable { get; set; }
     }
+
+
+
     class Receta
     {
         String codProducto;
         String detalle;
         double cantidad;
         double precio;
-        
-        public string CodProducto { get => codProducto; set => codProducto = value; }
-        public string Detalle { get => detalle; set => detalle = value; }
-        public double Cantidad { get => cantidad; set => cantidad = value; }
-        public double Precio { get => precio; set => precio = value; }
+
+
+        public int numer_factura { get; set; }
+
+        public string CodProducto { get; set; }
+
+        public string Detalle { get; set; }
+
+        public double Cantidad { get; set; }
+
+        public double Precio { get; set; }
 
         public void GetReceta(DataSet ds)
         {

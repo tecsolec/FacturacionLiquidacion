@@ -28,12 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSubirLiquidacion = new System.Windows.Forms.Button();
             this.dGVLiquidaciones = new System.Windows.Forms.DataGridView();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroliquidacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.piscina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ciclo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loteMBA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empacadora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.op = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbstotales = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtArchivo = new System.Windows.Forms.TextBox();
             this.txtHoja = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,14 +52,6 @@
             this.dtpDesde = new System.Windows.Forms.DateTimePicker();
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroliquidacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.piscina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ciclo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loteMBA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.empacadora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.op = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbstotales = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGVLiquidaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,14 +68,15 @@
             // dGVLiquidaciones
             // 
             this.dGVLiquidaciones.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVLiquidaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dGVLiquidaciones.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVLiquidaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dGVLiquidaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVLiquidaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fecha,
@@ -86,27 +87,87 @@
             this.empacadora,
             this.op,
             this.lbstotales});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGVLiquidaciones.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dGVLiquidaciones.DefaultCellStyle = dataGridViewCellStyle7;
             this.dGVLiquidaciones.Location = new System.Drawing.Point(13, 93);
             this.dGVLiquidaciones.Name = "dGVLiquidaciones";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVLiquidaciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dGVLiquidaciones.ReadOnly = true;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVLiquidaciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dGVLiquidaciones.Size = new System.Drawing.Size(674, 289);
             this.dGVLiquidaciones.TabIndex = 1;
             this.dGVLiquidaciones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVLiquidaciones_CellClick);
+            // 
+            // fecha
+            // 
+            this.fecha.DataPropertyName = "fecha";
+            this.fecha.HeaderText = "Fecha";
+            this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
+            // 
+            // numeroliquidacion
+            // 
+            this.numeroliquidacion.DataPropertyName = "numeroliquidacion";
+            this.numeroliquidacion.HeaderText = "# Liq.";
+            this.numeroliquidacion.Name = "numeroliquidacion";
+            this.numeroliquidacion.ReadOnly = true;
+            // 
+            // piscina
+            // 
+            this.piscina.DataPropertyName = "piscina";
+            this.piscina.HeaderText = "Piscina";
+            this.piscina.Name = "piscina";
+            this.piscina.ReadOnly = true;
+            // 
+            // ciclo
+            // 
+            this.ciclo.DataPropertyName = "ciclo";
+            this.ciclo.HeaderText = "Ciclo";
+            this.ciclo.Name = "ciclo";
+            this.ciclo.ReadOnly = true;
+            // 
+            // loteMBA
+            // 
+            this.loteMBA.DataPropertyName = "loteMBA";
+            this.loteMBA.HeaderText = "Lote";
+            this.loteMBA.Name = "loteMBA";
+            this.loteMBA.ReadOnly = true;
+            // 
+            // empacadora
+            // 
+            this.empacadora.DataPropertyName = "empacadora";
+            this.empacadora.HeaderText = "Empacadora";
+            this.empacadora.Name = "empacadora";
+            this.empacadora.ReadOnly = true;
+            // 
+            // op
+            // 
+            this.op.DataPropertyName = "op";
+            this.op.HeaderText = "Ord. Prodcuccion";
+            this.op.Name = "op";
+            this.op.ReadOnly = true;
+            // 
+            // lbstotales
+            // 
+            this.lbstotales.DataPropertyName = "lbstotales";
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0";
+            this.lbstotales.DefaultCellStyle = dataGridViewCellStyle6;
+            this.lbstotales.HeaderText = "LBS";
+            this.lbstotales.Name = "lbstotales";
+            this.lbstotales.ReadOnly = true;
             // 
             // txtArchivo
             // 
@@ -161,7 +222,7 @@
             "Facturados"});
             this.cbFilterEstado.Location = new System.Drawing.Point(546, 59);
             this.cbFilterEstado.Name = "cbFilterEstado";
-            this.cbFilterEstado.Size = new System.Drawing.Size(121, 21);
+            this.cbFilterEstado.Size = new System.Drawing.Size(141, 21);
             this.cbFilterEstado.TabIndex = 7;
             // 
             // label4
@@ -178,7 +239,7 @@
             this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDesde.Location = new System.Drawing.Point(545, 7);
             this.dtpDesde.Name = "dtpDesde";
-            this.dtpDesde.Size = new System.Drawing.Size(141, 20);
+            this.dtpDesde.Size = new System.Drawing.Size(142, 20);
             this.dtpDesde.TabIndex = 9;
             // 
             // dtpHasta
@@ -197,57 +258,6 @@
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 11;
             this.label5.Text = "Estado Liq:";
-            // 
-            // fecha
-            // 
-            this.fecha.DataPropertyName = "fecha";
-            this.fecha.HeaderText = "Fecha";
-            this.fecha.Name = "fecha";
-            // 
-            // numeroliquidacion
-            // 
-            this.numeroliquidacion.DataPropertyName = "numeroliquidacion";
-            this.numeroliquidacion.HeaderText = "# Liq.";
-            this.numeroliquidacion.Name = "numeroliquidacion";
-            // 
-            // piscina
-            // 
-            this.piscina.DataPropertyName = "piscina";
-            this.piscina.HeaderText = "Piscina";
-            this.piscina.Name = "piscina";
-            // 
-            // ciclo
-            // 
-            this.ciclo.DataPropertyName = "ciclo";
-            this.ciclo.HeaderText = "Ciclo";
-            this.ciclo.Name = "ciclo";
-            // 
-            // loteMBA
-            // 
-            this.loteMBA.DataPropertyName = "loteMBA";
-            this.loteMBA.HeaderText = "Lote";
-            this.loteMBA.Name = "loteMBA";
-            // 
-            // empacadora
-            // 
-            this.empacadora.DataPropertyName = "empacadora";
-            this.empacadora.HeaderText = "Empacadora";
-            this.empacadora.Name = "empacadora";
-            // 
-            // op
-            // 
-            this.op.DataPropertyName = "op";
-            this.op.HeaderText = "Ord. Prodcuccion";
-            this.op.Name = "op";
-            // 
-            // lbstotales
-            // 
-            this.lbstotales.DataPropertyName = "lbstotales";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.lbstotales.DefaultCellStyle = dataGridViewCellStyle2;
-            this.lbstotales.HeaderText = "LBS";
-            this.lbstotales.Name = "lbstotales";
             // 
             // FrmPrincipal
             // 

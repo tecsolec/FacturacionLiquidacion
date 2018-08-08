@@ -167,5 +167,49 @@ namespace FacturacionLiquidacion
             da.Fill(ds, "RECETA");
             return ds;
         }
+
+
+        //Procedimiento para guardar las guias
+        public string Guardar_Guias(IList<Guia> guias, string liquidacion)
+        {
+
+            string error = "OK";
+            //se declara una variable de tipo SqlConnection
+            cnn = new SqlConnection();
+            //se indica la cadena de conexion
+            cnn.ConnectionString = connetionString;
+
+            //Iniciando la transaccion
+            cnn.Open();
+            SqlTransaction transaction;
+            // Start a local transaction.
+            transaction = cnn.BeginTransaction("SampleTransaction");
+
+            try
+            {
+
+                cmd = cnn.CreateCommand();
+                cmd.Transaction = transaction;
+
+                //Consultando el detalle dela factura y almacenando en la base
+                foreach (Guia _guia in guias)
+                {
+                    cmd.CommandText = "P_Ingresar_Guia " + _guia.Numeroguia + ",'" + _guia.Fechaguia + "','" + _guia.Piscina + "','" + _guia.Ciclo + "'," + Convert.ToString(_guia.Lbs).Replace(",",".") + "," + Convert.ToString(_guia.Kg).Replace(",", ".") + "," + Convert.ToString(_guia.Un).Replace(",", ".") + ",'" + _guia.Empacadora + "'," + liquidacion ;
+                    cmd.ExecuteNonQuery();
+                }
+
+                transaction.Commit();
+                cnn.Close();
+
+                return error;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                transaction.Rollback();
+                cnn.Close();
+                error = "Error al guardar las guias: " + ex.Message;
+                return error;
+            }
+        }
     }
 }

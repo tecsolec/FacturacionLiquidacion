@@ -97,14 +97,16 @@ namespace FacturacionLiquidacion
                 catch (Exception ex)
                 {
                     //en caso de haber una excepcion que nos mande un mensaje de error
-                    MessageBox.Show("Error, Verificar el archivo o el nombre de la hoja", ex.Message);
+                    MessageBox.Show("Error, Verificar el archivo o el nombre de la hoja: \n " + ex.Message, ex.Message);
                 }
             } 
         }
 
         private void dGVLiquidaciones_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 8) {
+            //evento del boton editar
+            if (e.ColumnIndex == 8)
+            {
                 FrmLiquidacion FrmNewLiq = new FrmLiquidacion();
                 FrmNewLiq.Liq = liquidaciones.Where( liquidacion => liquidacion.Numeroliquidacion == dGVLiquidaciones.Rows[e.RowIndex].Cells["numeroliquidacion"].Value.ToString()).FirstOrDefault();
                 //dGVLiquidaciones.Rows[e.RowIndex].Cells["Liquidacion"].Value;
