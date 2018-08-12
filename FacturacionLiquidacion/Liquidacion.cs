@@ -15,185 +15,64 @@ namespace FacturacionLiquidacion
         String op;
         Double lbstotales;
         Double kgtotales;
+        double entero;
+        double sobre_cc;
+        double cola;
+        double basura;
+        double diferencia;
         Int32 untotales;
         String empacadora;
         String especie;
         String tsiembra;
         String numeroliquidacion;
         IList<Guia> guias;
+        IList<Receta> recetas;
 
-        public DateTime Fecha
-        {
-            get
-            {
-                return fecha;
-            }
+        public DateTime Fecha { get; set; }
 
-            set
-            {
-                fecha = value;
-            }
-        }
+        public string LoteMBA { get; set; }
 
-        public string LoteMBA
-        {
-            get
-            {
-                return loteMBA;
-            }
 
-            set
-            {
-                loteMBA = value;
-            }
-        }
+        public string Piscina { get; set; }
 
-        public string Piscina
-        {
-            get
-            {
-                return piscina;
-            }
+        public string Ciclo { get; set; }
 
-            set
-            {
-                piscina = value;
-            }
-        }
+        public string Op { get; set; }
 
-        public string Ciclo
-        {
-            get
-            {
-                return ciclo;
-            }
+        public double Lbstotales { get; set; }
 
-            set
-            {
-                ciclo = value;
-            }
-        }
+        public double Entero { get; set; }
 
-        public string Op
-        {
-            get
-            {
-                return op;
-            }
+        public double Sobre_Cc { get; set; }
 
-            set
-            {
-                op = value;
-            }
-        }
+        public double Cola { get; set; }
 
-        public double Lbstotales
-        {
-            get
-            {
-                return lbstotales;
-            }
+        public double Basura { get; set; }
 
-            set
-            {
-                lbstotales = value;
-            }
-        }
+        public double Diferencia { get; set; }
 
-        public double Kgtotales
-        {
-            get
-            {
-                return kgtotales;
-            }
+        public double Kgtotales { get; set; }
 
-            set
-            {
-                kgtotales = value;
-            }
-        }
+        public int Untotales { get; set; }
 
-        public int Untotales
-        {
-            get
-            {
-                return untotales;
-            }
+        public string Empacadora { get; set; }
 
-            set
-            {
-                untotales = value;
-            }
-        }
+        public string Especie { get; set; }
 
-        public string Empacadora
-        {
-            get
-            {
-                return empacadora;
-            }
+        public string Tsiembra { get; set; }
 
-            set
-            {
-                empacadora = value;
-            }
-        }
+        public string Numeroliquidacion { get; set; }
 
-        public string Especie
-        {
-            get
-            {
-                return especie;
-            }
+        internal IList<Guia> Guias { get; set; }
 
-            set
-            {
-                especie = value;
-            }
-        }
 
-        public string Tsiembra
-        {
-            get
-            {
-                return tsiembra;
-            }
+        internal IList<Receta> Recetas { get; set; }
 
-            set
-            {
-                tsiembra = value;
-            }
-        }
-
-        public string Numeroliquidacion
-        {
-            get
-            {
-                return numeroliquidacion;
-            }
-
-            set
-            {
-                numeroliquidacion = value;
-            }
-        }
-
-        internal IList<Guia> Guias
-        {
-            get
-            {
-                return guias;
-            }
-
-            set
-            {
-                guias = value;
-            }
-        }
 
         public IList<Liquidacion> FillList(DataSet guias)
         {
             IList<Liquidacion> tmp=new List<Liquidacion>();
+
             foreach (DataRow dr in guias.Tables[0].Rows)
             {
                 if(dr["Liquidacion"]!=DBNull.Value)
@@ -224,6 +103,7 @@ namespace FacturacionLiquidacion
                         lrow.Lbstotales = grow.Lbs;
                         lrow.Untotales = grow.Un;
                         lrow.Guias = new List<Guia>();
+                        lrow.Recetas = new List<Receta>();
                         lrow.Guias.Add(grow);
                         tmp.Add(lrow);
                     } else
@@ -255,6 +135,7 @@ namespace FacturacionLiquidacion
                             lrow.Lbstotales += grow.Lbs;
                             lrow.Untotales += grow.Un;
                             lrow.Guias = new List<Guia>();
+                            lrow.Recetas = new List<Receta>();
                             lrow.Guias.Add(grow);
                             tmp.Add(lrow);
                         }else
@@ -282,6 +163,7 @@ namespace FacturacionLiquidacion
                 return tmp;
         }
     }
+
     class Guia
     {
         DateTime fechaguia;
@@ -325,6 +207,9 @@ namespace FacturacionLiquidacion
     {
         String codProducto;
         String detalle;
+        string tipo;
+        string talla;
+        string clase;
         double cantidad;
         double precio;
 
@@ -334,6 +219,12 @@ namespace FacturacionLiquidacion
         public string CodProducto { get; set; }
 
         public string Detalle { get; set; }
+
+        public string Clase { get; set; }
+
+        public string Tipo { get; set; }
+
+        public string Talla { get; set; }
 
         public double Cantidad { get; set; }
 

@@ -47,10 +47,31 @@ namespace FacturacionLiquidacion
             cbEspecie.DataSource = dsEspecie.Tables[0].DefaultView;
             cbEspecie.SelectedItem = "ENTERO";
 
-            //agregando la diferencia 
-            tbDiferencia.Text = Liq.Lbstotales.ToString("N2");
-
+            //agregando datos de la liquidacion
+            tbEntero.Text = Liq.Entero.ToString("N2");
+            tbSobrCC.Text = Liq.Sobre_Cc.ToString("N2");
+            tbCola.Text = Liq.Cola.ToString("N2");
+            tbBasura.Text = Liq.Basura.ToString("N2");
+            if (Liq.Diferencia == 0)
+                tbDiferencia.Text = Liq.Lbstotales.ToString("N2");
+            else
+                tbDiferencia.Text = Liq.Diferencia.ToString("N2");
             txt_hidden_detalle.Text = "0";
+            //solo si existe un detalle
+            if (Liq.Recetas.Count > 0)
+            {
+                foreach (Receta rec in Liq.Recetas)
+                {
+                    Int32 idx = dgvReceta.Rows.Add();
+                    DataGridViewRow row = dgvReceta.Rows[idx];
+                    row.Cells["codProducto"].Value = rec.CodProducto;
+                    row.Cells["detalle"].Value = rec.Detalle;
+                    row.Cells["cantidad"].Value = rec.Cantidad;
+                }
+            }
+                //dgvReceta.DataSource = Liq.Recetas;
+
+
         }
 
         private void cbEspecie_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,6 +116,7 @@ namespace FacturacionLiquidacion
             if (txt_hidden_detalle.Text == "0") //agregar nueva fila
             {
                 Receta tmp = new Receta();
+
                 Hashtable param = new Hashtable();
                 CdaConsultas cons = new CdaConsultas();
                 param.Add("ESPECIE", cbEspecie.SelectedValue);
@@ -104,11 +126,15 @@ namespace FacturacionLiquidacion
                 tmp.GetReceta(cons.ConsultaCodigoProducto(param));
                 tmp.Cantidad = Convert.ToDouble(tbCantidad.Text);
                 tmp.Precio = 0.0;
+                tmp.Tipo = cbTipo.SelectedValue.ToString();
+                tmp.Talla = cbTalla.SelectedValue.ToString();
+                tmp.Clase = cbClase.SelectedValue.ToString();
                 Int32 idx = dgvReceta.Rows.Add();
                 DataGridViewRow row = dgvReceta.Rows[idx];
                 row.Cells["codProducto"].Value = tmp.CodProducto;
                 row.Cells["detalle"].Value = tmp.Detalle;
                 row.Cells["cantidad"].Value = tmp.Cantidad;
+                Liq.Recetas.Add(tmp);
             }
             else
             {
@@ -131,26 +157,6 @@ namespace FacturacionLiquidacion
                 btnLimpiarDetalle.Text = "Limpiar";
             }
 
-            //DataGridViewButtonColumn btngrid = new DataGridViewButtonColumn();
-            //btngrid.UseColumnTextForButtonValue = true;
-            //btngrid.Name = "Editar";
-            //btngrid.DataPropertyName = "Editar Liquidación";
-            //btngrid.HeaderText = "Editar Liquidación";
-            //btngrid.Text = "Editar";
-            //dgvReceta.Columns.Add(btngrid);
-
-
-            //DataGridViewButtonColumn btngridEdit = (DataGridViewButtonColumn)row.Cells["itemModificar"].Value;
-            //DataGridViewButtonColumn btngridDelet = (DataGridViewButtonColumn)row.Cells["itemEliminar"].Value;
-            //btngridEdit=new DataGridViewButtonColumn();
-            //btngridEdit.UseColumnTextForButtonValue = true;
-            //btngridEdit.Name = "Editar";
-            //btngridEdit.DataPropertyName = "Editar";
-            //btngridEdit.HeaderText = "Editar";
-            //btngridEdit.Text = "Editar";
-
-            //dgvReceta.AutoGenerateColumns = false;
-            //dgvReceta.Rows.Add(tmp);
         }
 
         private void btnLimpiarDetalle_Click(object sender, EventArgs e)
@@ -189,11 +195,26 @@ namespace FacturacionLiquidacion
         //evento grabar detalle de liquidacion en BD
         private void btnGrabar_Click(object sender, EventArgs e)
         {
+            string resultado = "";
+
             //obteniendo la informacion de las guias
             IList<Guia> guias = Liq.Guias;
+            IList<Receta> recetas = Liq.Recetas;
             CdaConsultas cons = new CdaConsultas();
-            cons.Guardar_Guias(guias, Liq.Numeroliquidacion);
+            Liq.Entero = Convert.ToDouble(tbEntero.Text);
+            Liq.Sobre_Cc = Convert.ToDouble(tbSobrCC.Text);
+            Liq.Cola = Convert.ToDouble(tbCola.Text);
+            Liq.Basura = Convert.ToDouble(tbBasura.Text);
+            Liq.Diferencia = Convert.ToDouble(tbDiferencia.Text);
+            resultado = cons.Guardar_Guias(guias, Liq, recetas);
+            if (resultado.Equals("OK"))
+                MessageBox.Show("Liquidación ingresada.");
+            else
+                MessageBox.Show("Error al ingresar: " + resultado);
+
             //foreach (DataGridViewRow row in dgvReceta.Rows)
+
+            //Obteniendo información de los grid en una lista
 
         }
 

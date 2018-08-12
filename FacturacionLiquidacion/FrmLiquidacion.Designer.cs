@@ -39,10 +39,15 @@
             this.panProducto = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.cbEspecie = new System.Windows.Forms.ComboBox();
-            this.tbCantidad = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.cbClase = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.cbTalla = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.cbTipo = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tbCantidad = new System.Windows.Forms.TextBox();
             this.btnLimpiarDetalle = new System.Windows.Forms.Button();
             this.btnAgregarItem = new System.Windows.Forms.Button();
             this.tbLiquidacion = new System.Windows.Forms.TextBox();
@@ -54,22 +59,16 @@
             this.tbBasura = new System.Windows.Forms.TextBox();
             this.tbSobrCC = new System.Windows.Forms.TextBox();
             this.btnGrabar = new System.Windows.Forms.Button();
-            this.btnTerminar = new System.Windows.Forms.Button();
             this.dgvReceta = new System.Windows.Forms.DataGridView();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tbDiferencia = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txt_hidden_detalle = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.codProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemModificar = new System.Windows.Forms.DataGridViewImageColumn();
             this.itemEliminar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbDiferencia = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txt_hidden_detalle = new System.Windows.Forms.TextBox();
             this.panProducto.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceta)).BeginInit();
@@ -159,7 +158,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
             this.tableLayoutPanel1.Controls.Add(this.cbEspecie, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label7, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbClase, 2, 1);
@@ -187,13 +186,18 @@
             this.cbEspecie.TabIndex = 14;
             this.cbEspecie.SelectedValueChanged += new System.EventHandler(this.cbEspecie_SelectedIndexChanged);
             // 
-            // tbCantidad
+            // label7
             // 
-            this.tbCantidad.Location = new System.Drawing.Point(497, 18);
-            this.tbCantidad.Name = "tbCantidad";
-            this.tbCantidad.Size = new System.Drawing.Size(92, 20);
-            this.tbCantidad.TabIndex = 22;
-            this.tbCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(381, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(110, 15);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Talla";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cbClase
             // 
@@ -204,6 +208,19 @@
             this.cbClase.TabIndex = 17;
             this.cbClase.SelectedValueChanged += new System.EventHandler(this.cbClase_SelectedValueChanged);
             // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(320, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 15);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Clase";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // cbTalla
             // 
             this.cbTalla.FormattingEnabled = true;
@@ -211,6 +228,18 @@
             this.cbTalla.Name = "cbTalla";
             this.cbTalla.Size = new System.Drawing.Size(110, 21);
             this.cbTalla.TabIndex = 18;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(147, 15);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Especie";
             // 
             // cbTipo
             // 
@@ -220,6 +249,40 @@
             this.cbTipo.Size = new System.Drawing.Size(158, 21);
             this.cbTipo.TabIndex = 15;
             this.cbTipo.SelectedValueChanged += new System.EventHandler(this.cbTipo_SelectedValueChanged);
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(156, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(158, 15);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Tipo";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(497, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(92, 15);
+            this.label14.TabIndex = 27;
+            this.label14.Text = "Libras";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tbCantidad
+            // 
+            this.tbCantidad.Location = new System.Drawing.Point(497, 18);
+            this.tbCantidad.Name = "tbCantidad";
+            this.tbCantidad.Size = new System.Drawing.Size(92, 20);
+            this.tbCantidad.TabIndex = 22;
+            this.tbCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnLimpiarDetalle
             // 
@@ -317,15 +380,6 @@
             this.btnGrabar.UseVisualStyleBackColor = true;
             this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
-            // btnTerminar
-            // 
-            this.btnTerminar.Location = new System.Drawing.Point(485, 38);
-            this.btnTerminar.Name = "btnTerminar";
-            this.btnTerminar.Size = new System.Drawing.Size(127, 23);
-            this.btnTerminar.TabIndex = 22;
-            this.btnTerminar.Text = "Terminar Liquidacion";
-            this.btnTerminar.UseVisualStyleBackColor = true;
-            // 
             // dgvReceta
             // 
             this.dgvReceta.AllowUserToAddRows = false;
@@ -343,104 +397,6 @@
             this.dgvReceta.Size = new System.Drawing.Size(600, 179);
             this.dgvReceta.TabIndex = 23;
             this.dgvReceta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReceta_CellClick);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(260, 102);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(55, 13);
-            this.label12.TabIndex = 7;
-            this.label12.Text = "Diferencia";
-            // 
-            // tbDiferencia
-            // 
-            this.tbDiferencia.Location = new System.Drawing.Point(321, 99);
-            this.tbDiferencia.Name = "tbDiferencia";
-            this.tbDiferencia.Size = new System.Drawing.Size(143, 20);
-            this.tbDiferencia.TabIndex = 16;
-            this.tbDiferencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(260, 33);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(49, 13);
-            this.label13.TabIndex = 25;
-            this.label13.Text = "Sobr. CC";
-            // 
-            // txt_hidden_detalle
-            // 
-            this.txt_hidden_detalle.Location = new System.Drawing.Point(541, 67);
-            this.txt_hidden_detalle.Name = "txt_hidden_detalle";
-            this.txt_hidden_detalle.Size = new System.Drawing.Size(30, 20);
-            this.txt_hidden_detalle.TabIndex = 26;
-            this.txt_hidden_detalle.Visible = false;
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(497, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(92, 15);
-            this.label14.TabIndex = 27;
-            this.label14.Text = "Libras";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(156, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(158, 15);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Tipo";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(147, 15);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "Especie";
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(320, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 15);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Clase";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(381, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(110, 15);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Talla";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // codProducto
             // 
@@ -485,6 +441,40 @@
             this.itemEliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.itemEliminar.Width = 60;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(260, 102);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(55, 13);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Diferencia";
+            // 
+            // tbDiferencia
+            // 
+            this.tbDiferencia.Location = new System.Drawing.Point(321, 99);
+            this.tbDiferencia.Name = "tbDiferencia";
+            this.tbDiferencia.Size = new System.Drawing.Size(143, 20);
+            this.tbDiferencia.TabIndex = 16;
+            this.tbDiferencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(260, 33);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 13);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Sobr. CC";
+            // 
+            // txt_hidden_detalle
+            // 
+            this.txt_hidden_detalle.Location = new System.Drawing.Point(541, 67);
+            this.txt_hidden_detalle.Name = "txt_hidden_detalle";
+            this.txt_hidden_detalle.Size = new System.Drawing.Size(30, 20);
+            this.txt_hidden_detalle.TabIndex = 26;
+            this.txt_hidden_detalle.Visible = false;
+            // 
             // FrmLiquidacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -493,7 +483,6 @@
             this.Controls.Add(this.txt_hidden_detalle);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.dgvReceta);
-            this.Controls.Add(this.btnTerminar);
             this.Controls.Add(this.btnGrabar);
             this.Controls.Add(this.tbDiferencia);
             this.Controls.Add(this.tbSobrCC);
@@ -550,7 +539,6 @@
         private System.Windows.Forms.Button btnLimpiarDetalle;
         private System.Windows.Forms.Button btnAgregarItem;
         private System.Windows.Forms.Button btnGrabar;
-        private System.Windows.Forms.Button btnTerminar;
         private System.Windows.Forms.DataGridView dgvReceta;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tbDiferencia;

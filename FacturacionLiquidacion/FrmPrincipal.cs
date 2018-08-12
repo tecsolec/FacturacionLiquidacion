@@ -18,6 +18,8 @@ namespace FacturacionLiquidacion
             InitializeComponent();
         }
 
+
+
         private void btnSubirLiquidacion_Click(object sender, EventArgs e)
         {
             String hoja;
@@ -105,7 +107,7 @@ namespace FacturacionLiquidacion
         private void dGVLiquidaciones_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //evento del boton editar
-            if (e.ColumnIndex == 8)
+            if (e.ColumnIndex == 9)
             {
                 FrmLiquidacion FrmNewLiq = new FrmLiquidacion();
                 FrmNewLiq.Liq = liquidaciones.Where( liquidacion => liquidacion.Numeroliquidacion == dGVLiquidaciones.Rows[e.RowIndex].Cells["numeroliquidacion"].Value.ToString()).FirstOrDefault();
@@ -113,7 +115,7 @@ namespace FacturacionLiquidacion
                 FrmNewLiq.Show();
 
             }
-            if (e.ColumnIndex == 9)
+            if (e.ColumnIndex == 10)
             {
                 FrmLiquidacion FrmNewLiq = new FrmLiquidacion();
                 FrmNewLiq.Liq = liquidaciones.Where(liquidacion => liquidacion.Numeroliquidacion == dGVLiquidaciones.Rows[e.RowIndex].Cells["numeroliquidacion"].Value.ToString()).FirstOrDefault();
@@ -121,6 +123,76 @@ namespace FacturacionLiquidacion
                 FrmNewLiq.Show();
 
             }
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            //Mostrar las liquidaciones pendientes
+            CdaConsultas dat_consultas = new CdaConsultas();
+            DataTable dt_pendientes = new DataTable();
+            DataTable dt_pendientes_detalle;
+            liquidaciones = new List<Liquidacion>();
+
+            dt_pendientes = dat_consultas.ConsultarLiquidacionesPendientes();
+            foreach (DataRow row in dt_pendientes.Rows)
+            {
+               
+                Liquidacion lrow = new Liquidacion();
+                lrow.Fecha = Convert.ToDateTime(row["fecha"].ToString());
+                lrow.LoteMBA = row["lote_mba"].ToString();
+                lrow.Op = row["op"].ToString();
+                lrow.Numeroliquidacion = row["cod_liquidacion"].ToString();
+                lrow.Empacadora = row["empacadora"].ToString();
+                lrow.Especie = "Camaron";
+                lrow.Piscina = row["piscina"].ToString();
+                lrow.Ciclo = row["ciclo"].ToString();
+                lrow.Kgtotales = Convert.ToDouble(row["kg_totales"].ToString());
+                lrow.Lbstotales = Convert.ToDouble(row["lbs_totales"].ToString());
+                lrow.Entero = Convert.ToDouble(row["entero"].ToString());
+                lrow.Sobre_Cc = Convert.ToDouble(row["sobre_cc"].ToString());
+                lrow.Cola = Convert.ToDouble(row["cola"].ToString());
+                lrow.Basura = Convert.ToDouble(row["basura"].ToString());
+                lrow.Recetas = new List<Receta>();
+                //consultando el detalle
+                dt_pendientes_detalle = new DataTable();
+                dt_pendientes_detalle = dat_consultas.ConsultarDetalleLiquidacionesPendientes(Convert.ToDecimal(row["cod_liquidacion"].ToString()));
+                //agregando  lista de detalle
+                foreach (DataRow rec in dt_pendientes_detalle.Rows)
+                {
+                    Receta tmp = new Receta();
+                    tmp.CodProducto = rec["cod_producto"].ToString();
+                    tmp.Cantidad = Convert.ToDouble(rec["cantidad"].ToString());
+                    tmp.Precio = 0.0;
+                    tmp.Tipo = rec["tipo"].ToString();
+                    tmp.Talla = rec["clase"].ToString();
+                    tmp.Clase = rec["talla"].ToString();
+                    tmp.Detalle = rec["detalle"].ToString();
+                    lrow.Recetas.Add(tmp);
+                }
+                
+                liquidaciones.Add(lrow);
+                dGVLiquidaciones.AutoGenerateColumns = false;
+                dGVLiquidaciones.DataSource = liquidaciones;
+                DataGridViewButtonColumn btngrid = new DataGridViewButtonColumn();
+                btngrid.UseColumnTextForButtonValue = true;
+                btngrid.Name = "Editar";
+                btngrid.DataPropertyName = "Editar Liquidación";
+                btngrid.HeaderText = "Editar Liquidación";
+                btngrid.Text = "Editar";
+                dGVLiquidaciones.Columns.Add(btngrid);
+                DataGridViewButtonColumn btngridFact = new DataGridViewButtonColumn();
+                btngridFact.UseColumnTextForButtonValue = true;
+                btngridFact.Name = "Facturar";
+                btngridFact.DataPropertyName = "Facturar Liquidación";
+                btngridFact.HeaderText = "Facturar Liquidación";
+                btngridFact.Text = "Facturar";
+                dGVLiquidaciones.Columns.Add(btngridFact);
+
+            }
+
+            //dGVLiquidaciones.AutoGenerateColumns = false;
+            //dGVLiquidaciones.DataSource = liquidaciones;
+            dGVLiquidaciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
     }
 }
