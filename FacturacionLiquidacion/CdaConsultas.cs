@@ -18,6 +18,7 @@ namespace FacturacionLiquidacion
         {
             //LOCAL
             connetionString = "Data Source=.;Initial Catalog=PRODUMAR;Integrated Security=True; ";
+
         }
         public DataSet ConsultaEspecie()
         {
