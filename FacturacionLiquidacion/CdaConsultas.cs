@@ -17,7 +17,9 @@ namespace FacturacionLiquidacion
         public CdaConsultas()
         {
             //LOCAL
+            
             connetionString = "Data Source=.;Initial Catalog=PRODUMAR;Integrated Security=True; ";
+            connetionString = "Server=10.51.1.12\\PORTAL;Database=LIQUIFACT;User Id=sa;Password = 123456; ";
 
         }
         public DataSet ConsultaEspecie()
@@ -168,5 +170,90 @@ namespace FacturacionLiquidacion
             da.Fill(ds, "RECETA");
             return ds;
         }
+
+
+        public DataTable Consultar_Det_Factura(String _proy, String _subproy,String _liqui)
+        {
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Cons_Detalle_Factura";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Proyecto", _proy);
+                cmd.Parameters.AddWithValue("@Subproyecto", _subproy);
+                cmd.Parameters.AddWithValue("@Liquidacion", _liqui);
+                cnn.Open();
+                DataTable dt = new DataTable();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cnn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public DataTable Consultar_Liq_X_Proyecto(String _proy, String _subproy)
+        {
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Cons_Liq_X_Proyecto";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Proyecto", _proy);
+                cmd.Parameters.AddWithValue("@Subproyecto", _subproy);
+                cnn.Open();
+                DataTable dt = new DataTable();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cnn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public DataTable Consultar_Cliente(String _nombre)
+        {
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Cons_Cliente";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@nombre", _nombre);
+                cnn.Open();
+                DataTable dt = new DataTable();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cnn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

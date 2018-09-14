@@ -28,274 +28,478 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnSubirLiquidacion = new System.Windows.Forms.Button();
-            this.dGVLiquidaciones = new System.Windows.Forms.DataGridView();
-            this.txtArchivo = new System.Windows.Forms.TextBox();
-            this.txtHoja = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbFilterEstado = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.btnConsultar = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txt_SubProyecto = new System.Windows.Forms.TextBox();
+            this.txtProyecto = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.grdDetalle = new System.Windows.Forms.DataGridView();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txt_total = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_subtotal = new System.Windows.Forms.TextBox();
+            this.txt_descuento = new System.Windows.Forms.TextBox();
+            this.txtquery = new System.Windows.Forms.TextBox();
+            this.cmbLiquidaciones = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroliquidacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.piscina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ciclo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loteMBA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.empacadora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.op = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbstotales = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dGVLiquidaciones)).BeginInit();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtNombreCliente = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txt_identificacion = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txt_direccion = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txt_telefono = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDetalle)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnSubirLiquidacion
-            // 
-            this.btnSubirLiquidacion.Location = new System.Drawing.Point(335, 5);
-            this.btnSubirLiquidacion.Name = "btnSubirLiquidacion";
-            this.btnSubirLiquidacion.Size = new System.Drawing.Size(75, 23);
-            this.btnSubirLiquidacion.TabIndex = 0;
-            this.btnSubirLiquidacion.Text = "Subir Liquidacion";
-            this.btnSubirLiquidacion.UseVisualStyleBackColor = true;
-            this.btnSubirLiquidacion.Click += new System.EventHandler(this.btnSubirLiquidacion_Click);
-            // 
-            // dGVLiquidaciones
-            // 
-            this.dGVLiquidaciones.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVLiquidaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dGVLiquidaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVLiquidaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.fecha,
-            this.numeroliquidacion,
-            this.piscina,
-            this.ciclo,
-            this.loteMBA,
-            this.empacadora,
-            this.op,
-            this.lbstotales});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGVLiquidaciones.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dGVLiquidaciones.Location = new System.Drawing.Point(13, 93);
-            this.dGVLiquidaciones.Name = "dGVLiquidaciones";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVLiquidaciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dGVLiquidaciones.Size = new System.Drawing.Size(674, 289);
-            this.dGVLiquidaciones.TabIndex = 1;
-            this.dGVLiquidaciones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVLiquidaciones_CellClick);
-            // 
-            // txtArchivo
-            // 
-            this.txtArchivo.Enabled = false;
-            this.txtArchivo.Location = new System.Drawing.Point(12, 7);
-            this.txtArchivo.Name = "txtArchivo";
-            this.txtArchivo.Size = new System.Drawing.Size(118, 20);
-            this.txtArchivo.TabIndex = 2;
-            this.txtArchivo.Text = "Subir Archivo de Guias";
-            // 
-            // txtHoja
-            // 
-            this.txtHoja.Location = new System.Drawing.Point(211, 7);
-            this.txtHoja.Name = "txtHoja";
-            this.txtHoja.Size = new System.Drawing.Size(118, 20);
-            this.txtHoja.TabIndex = 3;
-            this.txtHoja.Text = "Hoja1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(136, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Hoja a Leer";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(480, 13);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(476, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.Size = new System.Drawing.Size(93, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Desde:";
+            this.label2.Text = "Fecha Emision:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(480, 39);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(476, 39);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.Size = new System.Drawing.Size(110, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Hasta:";
-            // 
-            // cbFilterEstado
-            // 
-            this.cbFilterEstado.FormattingEnabled = true;
-            this.cbFilterEstado.Items.AddRange(new object[] {
-            "Todos",
-            "Liquidados",
-            "Facturados"});
-            this.cbFilterEstado.Location = new System.Drawing.Point(546, 59);
-            this.cbFilterEstado.Name = "cbFilterEstado";
-            this.cbFilterEstado.Size = new System.Drawing.Size(121, 21);
-            this.cbFilterEstado.TabIndex = 7;
+            this.label3.Text = "Fecha Caducidad:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 77);
+            this.label4.Location = new System.Drawing.Point(12, 150);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Liquidaciones";
-            // 
-            // dtpDesde
-            // 
-            this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDesde.Location = new System.Drawing.Point(545, 7);
-            this.dtpDesde.Name = "dtpDesde";
-            this.dtpDesde.Size = new System.Drawing.Size(141, 20);
-            this.dtpDesde.TabIndex = 9;
+            this.label4.Text = "Detalle";
             // 
             // dtpHasta
             // 
-            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpHasta.Location = new System.Drawing.Point(546, 33);
+            this.dtpHasta.CustomFormat = "dd/MM/yyyy";
+            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpHasta.Location = new System.Drawing.Point(592, 36);
             this.dtpHasta.Name = "dtpHasta";
-            this.dtpHasta.Size = new System.Drawing.Size(141, 20);
+            this.dtpHasta.Size = new System.Drawing.Size(94, 20);
             this.dtpHasta.TabIndex = 10;
+            // 
+            // btnConsultar
+            // 
+            this.btnConsultar.AutoSize = true;
+            this.btnConsultar.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnConsultar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConsultar.BackgroundImage")));
+            this.btnConsultar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultar.Location = new System.Drawing.Point(202, 26);
+            this.btnConsultar.Name = "btnConsultar";
+            this.btnConsultar.Size = new System.Drawing.Size(29, 30);
+            this.btnConsultar.TabIndex = 18;
+            this.btnConsultar.Text = "...";
+            this.btnConsultar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnConsultar.UseVisualStyleBackColor = false;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(103, 13);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 13);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Sub - proyecto";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txt_SubProyecto
+            // 
+            this.txt_SubProyecto.Location = new System.Drawing.Point(103, 32);
+            this.txt_SubProyecto.Name = "txt_SubProyecto";
+            this.txt_SubProyecto.Size = new System.Drawing.Size(93, 20);
+            this.txt_SubProyecto.TabIndex = 16;
+            // 
+            // txtProyecto
+            // 
+            this.txtProyecto.Location = new System.Drawing.Point(12, 32);
+            this.txtProyecto.Name = "txtProyecto";
+            this.txtProyecto.Size = new System.Drawing.Size(69, 20);
+            this.txtProyecto.TabIndex = 15;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 13);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 13);
+            this.label7.TabIndex = 14;
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(12, 10);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 16);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Proyecto";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(87, 35);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(10, 13);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "-";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(243, 12);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(76, 13);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Factura N°.:";
+            // 
+            // grdDetalle
+            // 
+            this.grdDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdDetalle.Location = new System.Drawing.Point(11, 166);
+            this.grdDetalle.Name = "grdDetalle";
+            this.grdDetalle.Size = new System.Drawing.Size(675, 190);
+            this.grdDetalle.TabIndex = 22;
+            this.grdDetalle.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellValueChanged);
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Location = new System.Drawing.Point(589, 12);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(59, 13);
+            this.lblFecha.TabIndex = 23;
+            this.lblFecha.Text = "01/01/001";
+            // 
+            // button1
+            // 
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(611, 459);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 36);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Cancelar";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuardar.Location = new System.Drawing.Point(527, 459);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 36);
+            this.btnGuardar.TabIndex = 25;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // button3
+            // 
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(9, 459);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 36);
+            this.button3.TabIndex = 26;
+            this.button3.Text = "Nuevo";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(528, 430);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(51, 13);
+            this.label13.TabIndex = 30;
+            this.label13.Text = "TOTAL:";
+            // 
+            // txt_total
+            // 
+            this.txt_total.Location = new System.Drawing.Point(579, 427);
+            this.txt_total.Name = "txt_total";
+            this.txt_total.Size = new System.Drawing.Size(107, 20);
+            this.txt_total.TabIndex = 34;
+            this.txt_total.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(23, 378);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(134, 17);
+            this.checkBox1.TabIndex = 36;
+            this.checkBox1.Text = "Comision Vendedor";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(511, 404);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(72, 13);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Descuento:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(524, 378);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Subtotal:";
+            // 
+            // txt_subtotal
+            // 
+            this.txt_subtotal.Location = new System.Drawing.Point(579, 375);
+            this.txt_subtotal.Name = "txt_subtotal";
+            this.txt_subtotal.Size = new System.Drawing.Size(107, 20);
+            this.txt_subtotal.TabIndex = 31;
+            this.txt_subtotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txt_descuento
+            // 
+            this.txt_descuento.Location = new System.Drawing.Point(579, 401);
+            this.txt_descuento.Name = "txt_descuento";
+            this.txt_descuento.Size = new System.Drawing.Size(107, 20);
+            this.txt_descuento.TabIndex = 33;
+            this.txt_descuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtquery
+            // 
+            this.txtquery.Location = new System.Drawing.Point(103, 466);
+            this.txtquery.Name = "txtquery";
+            this.txtquery.Size = new System.Drawing.Size(292, 20);
+            this.txtquery.TabIndex = 38;
+            // 
+            // cmbLiquidaciones
+            // 
+            this.cmbLiquidaciones.FormattingEnabled = true;
+            this.cmbLiquidaciones.Location = new System.Drawing.Point(325, 32);
+            this.cmbLiquidaciones.Name = "cmbLiquidaciones";
+            this.cmbLiquidaciones.Size = new System.Drawing.Size(142, 21);
+            this.cmbLiquidaciones.TabIndex = 40;
+            this.cmbLiquidaciones.SelectedIndexChanged += new System.EventHandler(this.cmbLiquidaciones_SelectedIndexChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txt_telefono);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.txt_direccion);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.txt_identificacion);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.txtNombreCliente);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Location = new System.Drawing.Point(11, 62);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(676, 85);
+            this.groupBox1.TabIndex = 41;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos Cliente";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(480, 62);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(243, 36);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Estado Liq:";
+            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.TabIndex = 42;
+            this.label5.Text = "Liquidación:";
             // 
-            // fecha
+            // label11
             // 
-            this.fecha.DataPropertyName = "fecha";
-            this.fecha.HeaderText = "Fecha";
-            this.fecha.Name = "fecha";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(9, 28);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 13);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Nombre:";
             // 
-            // numeroliquidacion
+            // txtNombreCliente
             // 
-            this.numeroliquidacion.DataPropertyName = "numeroliquidacion";
-            this.numeroliquidacion.HeaderText = "# Liq.";
-            this.numeroliquidacion.Name = "numeroliquidacion";
+            this.txtNombreCliente.Location = new System.Drawing.Point(70, 25);
+            this.txtNombreCliente.Name = "txtNombreCliente";
+            this.txtNombreCliente.ReadOnly = true;
+            this.txtNombreCliente.Size = new System.Drawing.Size(377, 20);
+            this.txtNombreCliente.TabIndex = 23;
             // 
-            // piscina
+            // label14
             // 
-            this.piscina.DataPropertyName = "piscina";
-            this.piscina.HeaderText = "Piscina";
-            this.piscina.Name = "piscina";
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(461, 27);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(34, 13);
+            this.label14.TabIndex = 24;
+            this.label14.Text = "Ruc:";
             // 
-            // ciclo
+            // txt_identificacion
             // 
-            this.ciclo.DataPropertyName = "ciclo";
-            this.ciclo.HeaderText = "Ciclo";
-            this.ciclo.Name = "ciclo";
+            this.txt_identificacion.Location = new System.Drawing.Point(521, 24);
+            this.txt_identificacion.Name = "txt_identificacion";
+            this.txt_identificacion.ReadOnly = true;
+            this.txt_identificacion.Size = new System.Drawing.Size(127, 20);
+            this.txt_identificacion.TabIndex = 25;
             // 
-            // loteMBA
+            // label15
             // 
-            this.loteMBA.DataPropertyName = "loteMBA";
-            this.loteMBA.HeaderText = "Lote";
-            this.loteMBA.Name = "loteMBA";
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(9, 54);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(65, 13);
+            this.label15.TabIndex = 26;
+            this.label15.Text = "Dirección:";
             // 
-            // empacadora
+            // txt_direccion
             // 
-            this.empacadora.DataPropertyName = "empacadora";
-            this.empacadora.HeaderText = "Empacadora";
-            this.empacadora.Name = "empacadora";
+            this.txt_direccion.Location = new System.Drawing.Point(70, 51);
+            this.txt_direccion.Name = "txt_direccion";
+            this.txt_direccion.ReadOnly = true;
+            this.txt_direccion.Size = new System.Drawing.Size(377, 20);
+            this.txt_direccion.TabIndex = 27;
             // 
-            // op
+            // label16
             // 
-            this.op.DataPropertyName = "op";
-            this.op.HeaderText = "Ord. Prodcuccion";
-            this.op.Name = "op";
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(461, 56);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(61, 13);
+            this.label16.TabIndex = 28;
+            this.label16.Text = "Teléfono:";
             // 
-            // lbstotales
+            // txt_telefono
             // 
-            this.lbstotales.DataPropertyName = "lbstotales";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.lbstotales.DefaultCellStyle = dataGridViewCellStyle2;
-            this.lbstotales.HeaderText = "LBS";
-            this.lbstotales.Name = "lbstotales";
+            this.txt_telefono.Location = new System.Drawing.Point(521, 53);
+            this.txt_telefono.Name = "txt_telefono";
+            this.txt_telefono.ReadOnly = true;
+            this.txt_telefono.Size = new System.Drawing.Size(126, 20);
+            this.txt_telefono.TabIndex = 29;
             // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(699, 394);
+            this.ClientSize = new System.Drawing.Size(699, 501);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.cmbLiquidaciones);
+            this.Controls.Add(this.txtquery);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.txt_total);
+            this.Controls.Add(this.txt_descuento);
+            this.Controls.Add(this.txt_subtotal);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lblFecha);
+            this.Controls.Add(this.grdDetalle);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.btnConsultar);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txt_SubProyecto);
+            this.Controls.Add(this.txtProyecto);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.dtpHasta);
-            this.Controls.Add(this.dtpDesde);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.cbFilterEstado);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtHoja);
-            this.Controls.Add(this.txtArchivo);
-            this.Controls.Add(this.dGVLiquidaciones);
-            this.Controls.Add(this.btnSubirLiquidacion);
             this.Name = "FrmPrincipal";
             this.Text = "Facturación de Liquidaciones";
-            ((System.ComponentModel.ISupportInitialize)(this.dGVLiquidaciones)).EndInit();
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.grdDetalle)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnSubirLiquidacion;
-        private System.Windows.Forms.DataGridView dGVLiquidaciones;
-        private System.Windows.Forms.TextBox txtArchivo;
-        private System.Windows.Forms.TextBox txtHoja;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbFilterEstado;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dtpDesde;
         private System.Windows.Forms.DateTimePicker dtpHasta;
+        private System.Windows.Forms.Button btnConsultar;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txt_SubProyecto;
+        private System.Windows.Forms.TextBox txtProyecto;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridView grdDetalle;
+        private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txt_total;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txt_subtotal;
+        private System.Windows.Forms.TextBox txt_descuento;
+        private System.Windows.Forms.TextBox txtquery;
+        private System.Windows.Forms.ComboBox cmbLiquidaciones;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numeroliquidacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn piscina;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ciclo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn loteMBA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn empacadora;
-        private System.Windows.Forms.DataGridViewTextBoxColumn op;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lbstotales;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtNombreCliente;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txt_telefono;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txt_direccion;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txt_identificacion;
     }
 }
 

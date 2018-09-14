@@ -22,18 +22,18 @@ namespace FacturacionLiquidacion
         String numeroliquidacion;
         IList<Guia> guias;
 
-        public DateTime Fecha { get => fecha; set => fecha = value; }
-        public string LoteMBA { get => loteMBA; set => loteMBA = value; }
-        public string Op { get => op; set => op = value; }
-        public double Lbstotales { get => lbstotales; set => lbstotales = value; }
-        public double Kgtotales { get => kgtotales; set => kgtotales = value; }
-        public int Untotales { get => untotales; set => untotales = value; }
-        public string Empacadora { get => empacadora; set => empacadora = value; }
-        public string Especie { get => especie; set => especie = value; }
-        public string Tsiembra { get => tsiembra; set => tsiembra = value; }
-        public string Numeroliquidacion { get => numeroliquidacion; set => numeroliquidacion = value; }
-        public string Piscina { get => piscina; set => piscina = value; }
-        public string Ciclo { get => ciclo; set => ciclo = value; }
+        public DateTime Fecha { get; set; }
+        public string LoteMBA { get; set; }
+        public string Op { get; set; }
+        public double Lbstotales { get; set; }
+        public double Kgtotales { get; set; }
+        public int Untotales { get; set; }
+        public string Empacadora { get; set; }
+        public string Especie { get; set; }
+        public string Tsiembra { get; set; }
+        public string Numeroliquidacion { get; set; }
+        public string Piscina { get; set; }
+        public string Ciclo { get; set; }
 
         public IList<Liquidacion> FillList(DataSet guias)
         {
@@ -123,12 +123,12 @@ namespace FacturacionLiquidacion
         Int32 un;
         String responsable;
 
-        public DateTime Fechaguia { get => fechaguia; set => fechaguia = value; }
-        public string Numeroguia { get => numeroguia; set => numeroguia = value; }
-        public double Lbs { get => lbs; set => lbs = value; }
-        public double Kg { get => kg; set => kg = value; }
-        public int Un { get => un; set => un = value; }
-        public string Responsable { get => responsable; set => responsable = value; }
+        public DateTime Fechaguia { get; set; }
+        public string Numeroguia { get; set; }
+        public double Lbs { get; set; }
+        public double Kg { get; set; }
+        public int Un { get; set; }
+        public string Responsable { get; set; }
     }
     class Receta
     {
@@ -137,10 +137,10 @@ namespace FacturacionLiquidacion
         double cantidad;
         double precio;
         
-        public string CodProducto { get => codProducto; set => codProducto = value; }
-        public string Detalle { get => detalle; set => detalle = value; }
-        public double Cantidad { get => cantidad; set => cantidad = value; }
-        public double Precio { get => precio; set => precio = value; }
+        public string CodProducto { get; set; }
+        public string Detalle { get; set; }
+        public double Cantidad { get; set; }
+        public double Precio { get; set; }
 
         public void GetReceta(DataSet ds)
         {

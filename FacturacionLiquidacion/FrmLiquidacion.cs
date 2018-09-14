@@ -20,7 +20,7 @@ namespace FacturacionLiquidacion
         }
 
 
-        internal Liquidacion Liq { get => liq; set => liq = value; }
+        internal Liquidacion Liq { get; set; }
 
         private void FrmLiquidacion_Load(object sender, EventArgs e)
         {
