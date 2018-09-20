@@ -29,7 +29,7 @@ namespace FacturacionLiquidacion
                 MessageBox.Show("Ingrese el código del proyecto.");
             else
             {
-                if(string.IsNullOrEmpty(txt_SubProyecto.Text))
+                if (string.IsNullOrEmpty(txt_SubProyecto.Text))
                     MessageBox.Show("Ingrese el código del sub-proyecto.");
                 else
                 {
@@ -44,11 +44,14 @@ namespace FacturacionLiquidacion
                     cmbLiquidaciones.ValueMember = "liquida";
 
                     //LLenando los datos de la empresa
-                    cliente = dat_consultas.Consultar_Cliente("Expalsa");
-                    txtNombreCliente.Text = cliente.Rows[0][3].ToString();
-                    txt_identificacion.Text = cliente.Rows[0][4].ToString();
-                    txt_telefono.Text = cliente.Rows[0][6].ToString();
-                    txt_direccion.Text = cliente.Rows[0][35].ToString();
+                    cliente = dat_consultas.Consultar_Cliente(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());
+                    if (cliente.Rows.Count > 0)
+                    { 
+                        txtNombreCliente.Text = cliente.Rows[0][3].ToString();
+                        txt_identificacion.Text = cliente.Rows[0][4].ToString();
+                        txt_telefono.Text = cliente.Rows[0][6].ToString();
+                        txt_direccion.Text = cliente.Rows[0][35].ToString();
+                    }
                 }
             }
             
