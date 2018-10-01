@@ -18,7 +18,7 @@ namespace FacturacionLiquidacion
         {
             //LOCAL
             
-            connetionString = "Data Source=.;Initial Catalog=PRODUMAR;Integrated Security=True; ";
+            //connetionString = "Data Source=.;Initial Catalog=PRODUMAR;Integrated Security=True; ";
             connetionString = "Server=10.51.1.12\\PORTAL;Database=LIQUIFACT;User Id=sa;Password = 123456; ";
 
         }
@@ -279,6 +279,44 @@ namespace FacturacionLiquidacion
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+
+        //Almacenar en sist_api
+        public int Guardar_SIS_API(string query)
+        {
+            int ultimo_movimiento = 0;
+
+
+            //Iniciando la transaccion
+            cnn.Open();
+            SqlTransaction transaction;
+            // Start a local transaction.
+            transaction = cnn.BeginTransaction("SampleTransaction");
+
+            try
+            {
+
+                //Grabando la cabecera de la factura
+                SqlCommand _cmd = cnn.CreateCommand();
+                _cmd.Transaction = transaction;
+
+                //Actualizando ultimo numero de factura
+                _cmd.CommandText = query;
+                _cmd.ExecuteNonQuery();
+
+                transaction.Commit();
+                cnn.Close();
+
+                return ultimo_movimiento;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                transaction.Rollback();
+                cnn.Close();
+                Console.WriteLine("Error al guardar datos en SIst API: " + ex);
+                return 0;
             }
         }
     }

@@ -16,6 +16,7 @@ namespace FacturacionLiquidacion
         detalle_factura det;
         List<detalle_factura> lista_detalles;
         CdaConsultas dat_consultas;
+        CdaConsultasmba dat_consultas_api;
 
         public FrmPrincipal()
         {
@@ -137,6 +138,11 @@ namespace FacturacionLiquidacion
 
             txtquery.Text = query;
             //MessageBox.Show(query);
+            //guardando el query en la base de datos
+            dat_consultas_api = new CdaConsultasmba();
+            dat_consultas_api.Guardar_SIS_API(query);
+
+
             MessageBox.Show("Factura ingresada.");
         }
 
@@ -169,8 +175,8 @@ namespace FacturacionLiquidacion
                     //det.multi_detalle = "01;;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;;;";  //8 campos
                     det.multi_detalle = "01;;;;;;;";  //8 campos
                     det.codigo_producto = row.Cells[0].Value.ToString();
-                    det.cantidad = Convert.ToDouble(row.Cells[2].Value.ToString());
-                    det.precio_unitario = Convert.ToDouble(row.Cells[3].Value.ToString());
+                    det.cantidad = Convert.ToDouble(row.Cells[3].Value.ToString());
+                    det.precio_unitario = Convert.ToDouble(row.Cells[4].Value.ToString());
                     det.total_neto = det.precio_unitario * det.cantidad;
                     lista_detalles.Add(det);
                 }
@@ -187,7 +193,7 @@ namespace FacturacionLiquidacion
             {
                 if (!string.IsNullOrEmpty(Convert.ToString(row.Cells[0].Value)))
                 {
-                    double totalxproducto = Convert.ToDouble(row.Cells[2].Value.ToString()) * Convert.ToDouble(row.Cells[3].Value.ToString());
+                    double totalxproducto = Convert.ToDouble(row.Cells[3].Value.ToString()) * Convert.ToDouble(row.Cells[4].Value.ToString());
                     subtotal = subtotal + totalxproducto;
                 }
             }
@@ -203,7 +209,10 @@ namespace FacturacionLiquidacion
         //evento al momento de editar un precio
         private void grdDetalle_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 3) // al cambiar algún precio
+            if (e.ColumnIndex == 3) // al cambiar alguna cantidad
+                Actualizar_Totales();
+
+            if (e.ColumnIndex == 4) // al cambiar algún precio
                 Actualizar_Totales();
         }
 
@@ -217,6 +226,7 @@ namespace FacturacionLiquidacion
             //llenando el detalle de la factura
             DataTable dt = new DataTable();
             dt.Columns.Add("cod_Pdto", typeof(string));
+            dt.Columns.Add("Categoria", typeof(string));
             dt.Columns.Add("nomb_Pdto", typeof(string));
             dt.Columns.Add("cantidad", typeof(double));
             dt.Columns.Add("precio", typeof(double));
@@ -226,16 +236,18 @@ namespace FacturacionLiquidacion
             foreach (DataRow row in detalle.Rows)
             {
                 String codprod = "";
+                String categoria = "";
                 String nomprod = "";
                 double cant = 0;
                 double precio = 0;
                 codprod = row[0].ToString();
-                nomprod = row[1].ToString();
-                if (row[2].ToString() != "")
-                    cant = Convert.ToDouble(row[2].ToString());
+                categoria = row[1].ToString();
+                nomprod = row[2].ToString();
                 if (row[3].ToString() != "")
-                    precio = Convert.ToDouble(row[3].ToString());
-                dt.Rows.Add(codprod, nomprod, cant , precio);
+                    cant = Convert.ToDouble(row[3].ToString());
+                if (row[4].ToString() != "")
+                    precio = Convert.ToDouble(row[4].ToString());
+                dt.Rows.Add(codprod, categoria, nomprod, cant , precio);
             }
 
             grdDetalle.DataSource = dt;
@@ -245,20 +257,25 @@ namespace FacturacionLiquidacion
             grdDetalle.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             grdDetalle.Columns[0].Width = 150;
             grdDetalle.Columns[1].ReadOnly = true;
-            grdDetalle.Columns[1].HeaderText = "Descripción";
+            grdDetalle.Columns[1].HeaderText = "Categoria";
             grdDetalle.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             grdDetalle.Columns[2].ReadOnly = true;
-            grdDetalle.Columns[2].HeaderText = "Cant.";
+            grdDetalle.Columns[2].HeaderText = "Descripción";
             grdDetalle.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdDetalle.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdDetalle.Columns[2].Width = 80;
-            //columna precio
-            grdDetalle.Columns[3].HeaderText = "PVP Unit";
+            grdDetalle.Columns[3].ReadOnly = true;
+            //columna cantidad
+            grdDetalle.Columns[3].HeaderText = "Cant.";
             grdDetalle.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdDetalle.Columns[3].DefaultCellStyle.Format = "N2";
-            grdDetalle.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            grdDetalle.Columns[3].Width = 120;
+            grdDetalle.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            grdDetalle.Columns[3].Width = 80;
             grdDetalle.Columns[3].ReadOnly = false;
+            //columna precio
+            grdDetalle.Columns[4].HeaderText = "PVP Unit";
+            grdDetalle.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            grdDetalle.Columns[4].DefaultCellStyle.Format = "N2";
+            grdDetalle.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            grdDetalle.Columns[4].Width = 120;
+            grdDetalle.Columns[4].ReadOnly = false;
 
             Actualizar_Totales();
         }
@@ -267,7 +284,7 @@ namespace FacturacionLiquidacion
         //Evento al escoger una liquidación
         private void cmbLiquidaciones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LLenar_Detalle(txtProyecto.Text.Trim(),txt_SubProyecto.Text.Trim(),cmbLiquidaciones.ValueMember);
+            LLenar_Detalle(txtProyecto.Text.Trim(),txt_SubProyecto.Text.Trim(),cmbLiquidaciones.Text);
         }
     }
 }
