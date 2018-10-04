@@ -171,7 +171,35 @@ namespace FacturacionLiquidacion
             return ds;
         }
 
+        public DataTable Consultar_Det_Factura(String _proy, String _subproy, String _cliente, String _docentero,String _doccola)
+        {
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Cons_Detalle_Factura2";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Proyecto", _proy);
+                cmd.Parameters.AddWithValue("@Subproyecto", _subproy);
+                cmd.Parameters.AddWithValue("@cliente", _cliente);
+                cmd.Parameters.AddWithValue("@docentero", _docentero);
+                cmd.Parameters.AddWithValue("@doccola", _doccola);
+                cnn.Open();
+                DataTable dt = new DataTable();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cnn.Close();
 
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable Consultar_Det_Factura(String _proy, String _subproy,String _liqui)
         {
             try
@@ -200,7 +228,55 @@ namespace FacturacionLiquidacion
             }
         }
 
+        public DataTable Consultar_Clientes()
+        {
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Cons_Clientes";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnn.Open();
+                DataTable dt = new DataTable();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cnn.Close();
 
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable Consultar_Cliente_X_Codigo(String _codCliente)
+        {
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Cons_Cliente_Codigo";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codigo_cliente", _codCliente);
+                cnn.Open();
+                DataTable dt = new DataTable();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cnn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable Consultar_Liq_X_Proyecto(String _proy, String _subproy)
         {
             try
@@ -227,8 +303,59 @@ namespace FacturacionLiquidacion
                 throw ex;
             }
         }
+        public DataTable Consultar_Ord_Entero(String _proy, String _subproy)
+        {
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Cons_Ordenes_Entero";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Proyecto", _proy);
+                cmd.Parameters.AddWithValue("@Subproyecto", _subproy);
+                cnn.Open();
+                DataTable dt = new DataTable();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cnn.Close();
 
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public DataTable Consultar_Ord_Cola(String _proy, String _subproy)
+        {
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Cons_Ordenes_Cola";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Proyecto", _proy);
+                cmd.Parameters.AddWithValue("@Subproyecto", _subproy);
+                cnn.Open();
+                DataTable dt = new DataTable();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cnn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable Consultar_Cliente(String _nombre)
         {
             try

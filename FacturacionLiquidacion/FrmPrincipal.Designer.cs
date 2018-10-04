@@ -53,7 +53,7 @@
             this.txt_subtotal = new System.Windows.Forms.TextBox();
             this.txt_descuento = new System.Windows.Forms.TextBox();
             this.txtquery = new System.Windows.Forms.TextBox();
-            this.cmbLiquidaciones = new System.Windows.Forms.ComboBox();
+            this.cmbOrdEntero = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txt_telefono = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -61,10 +61,13 @@
             this.label15 = new System.Windows.Forms.Label();
             this.txt_identificacion = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtNombreCliente = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.DateTimePicker();
+            this.label17 = new System.Windows.Forms.Label();
+            this.cmbOrdCola = new System.Windows.Forms.ComboBox();
+            this.cmbNombreCliente = new System.Windows.Forms.ComboBox();
+            this.txtCodCliente = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdDetalle)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +95,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 150);
+            this.label4.Location = new System.Drawing.Point(12, 173);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 8;
@@ -187,7 +190,7 @@
             // grdDetalle
             // 
             this.grdDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdDetalle.Location = new System.Drawing.Point(11, 166);
+            this.grdDetalle.Location = new System.Drawing.Point(11, 189);
             this.grdDetalle.Name = "grdDetalle";
             this.grdDetalle.Size = new System.Drawing.Size(675, 190);
             this.grdDetalle.TabIndex = 22;
@@ -197,19 +200,20 @@
             // 
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(611, 459);
+            this.button1.Location = new System.Drawing.Point(611, 482);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 36);
             this.button1.TabIndex = 24;
             this.button1.Text = "Cancelar";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnGuardar
             // 
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(527, 459);
+            this.btnGuardar.Location = new System.Drawing.Point(527, 482);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 36);
             this.btnGuardar.TabIndex = 25;
@@ -222,7 +226,7 @@
             // 
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(9, 459);
+            this.button3.Location = new System.Drawing.Point(9, 482);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 36);
             this.button3.TabIndex = 26;
@@ -234,7 +238,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(528, 430);
+            this.label13.Location = new System.Drawing.Point(528, 453);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(51, 13);
             this.label13.TabIndex = 30;
@@ -242,7 +246,7 @@
             // 
             // txt_total
             // 
-            this.txt_total.Location = new System.Drawing.Point(579, 427);
+            this.txt_total.Location = new System.Drawing.Point(579, 450);
             this.txt_total.Name = "txt_total";
             this.txt_total.Size = new System.Drawing.Size(107, 20);
             this.txt_total.TabIndex = 34;
@@ -252,7 +256,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(23, 378);
+            this.checkBox1.Location = new System.Drawing.Point(23, 401);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(134, 17);
             this.checkBox1.TabIndex = 36;
@@ -263,7 +267,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(511, 404);
+            this.label12.Location = new System.Drawing.Point(511, 427);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 13);
             this.label12.TabIndex = 29;
@@ -273,7 +277,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(524, 378);
+            this.label1.Location = new System.Drawing.Point(524, 401);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 27;
@@ -281,7 +285,7 @@
             // 
             // txt_subtotal
             // 
-            this.txt_subtotal.Location = new System.Drawing.Point(579, 375);
+            this.txt_subtotal.Location = new System.Drawing.Point(579, 398);
             this.txt_subtotal.Name = "txt_subtotal";
             this.txt_subtotal.Size = new System.Drawing.Size(107, 20);
             this.txt_subtotal.TabIndex = 31;
@@ -289,7 +293,7 @@
             // 
             // txt_descuento
             // 
-            this.txt_descuento.Location = new System.Drawing.Point(579, 401);
+            this.txt_descuento.Location = new System.Drawing.Point(579, 424);
             this.txt_descuento.Name = "txt_descuento";
             this.txt_descuento.Size = new System.Drawing.Size(107, 20);
             this.txt_descuento.TabIndex = 33;
@@ -297,31 +301,31 @@
             // 
             // txtquery
             // 
-            this.txtquery.Location = new System.Drawing.Point(103, 466);
+            this.txtquery.Location = new System.Drawing.Point(103, 489);
             this.txtquery.Name = "txtquery";
             this.txtquery.Size = new System.Drawing.Size(292, 20);
             this.txtquery.TabIndex = 38;
             // 
-            // cmbLiquidaciones
+            // cmbOrdEntero
             // 
-            this.cmbLiquidaciones.FormattingEnabled = true;
-            this.cmbLiquidaciones.Location = new System.Drawing.Point(325, 32);
-            this.cmbLiquidaciones.Name = "cmbLiquidaciones";
-            this.cmbLiquidaciones.Size = new System.Drawing.Size(142, 21);
-            this.cmbLiquidaciones.TabIndex = 40;
-            this.cmbLiquidaciones.SelectedIndexChanged += new System.EventHandler(this.cmbLiquidaciones_SelectedIndexChanged);
+            this.cmbOrdEntero.FormattingEnabled = true;
+            this.cmbOrdEntero.Location = new System.Drawing.Point(325, 32);
+            this.cmbOrdEntero.Name = "cmbOrdEntero";
+            this.cmbOrdEntero.Size = new System.Drawing.Size(142, 21);
+            this.cmbOrdEntero.TabIndex = 40;
+            this.cmbOrdEntero.SelectedIndexChanged += new System.EventHandler(this.cmbOrdEntero_SelectedIndexChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbNombreCliente);
             this.groupBox1.Controls.Add(this.txt_telefono);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.txt_direccion);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.txt_identificacion);
             this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.txtNombreCliente);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Location = new System.Drawing.Point(11, 62);
+            this.groupBox1.Location = new System.Drawing.Point(11, 85);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(676, 85);
             this.groupBox1.TabIndex = 41;
@@ -382,14 +386,6 @@
             this.label14.TabIndex = 24;
             this.label14.Text = "Ruc:";
             // 
-            // txtNombreCliente
-            // 
-            this.txtNombreCliente.Location = new System.Drawing.Point(70, 25);
-            this.txtNombreCliente.Name = "txtNombreCliente";
-            this.txtNombreCliente.ReadOnly = true;
-            this.txtNombreCliente.Size = new System.Drawing.Size(377, 20);
-            this.txtNombreCliente.TabIndex = 23;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -408,7 +404,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 13);
             this.label5.TabIndex = 42;
-            this.label5.Text = "Liquidación:";
+            this.label5.Text = "Ord. Entero:";
             // 
             // lblFecha
             // 
@@ -419,15 +415,55 @@
             this.lblFecha.Size = new System.Drawing.Size(94, 20);
             this.lblFecha.TabIndex = 43;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(243, 62);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(64, 13);
+            this.label17.TabIndex = 45;
+            this.label17.Text = "Ord. Cola:";
+            // 
+            // cmbOrdCola
+            // 
+            this.cmbOrdCola.FormattingEnabled = true;
+            this.cmbOrdCola.Location = new System.Drawing.Point(325, 58);
+            this.cmbOrdCola.Name = "cmbOrdCola";
+            this.cmbOrdCola.Size = new System.Drawing.Size(142, 21);
+            this.cmbOrdCola.TabIndex = 44;
+            this.cmbOrdCola.SelectedIndexChanged += new System.EventHandler(this.cmbOrdCola_SelectedIndexChanged);
+            // 
+            // cmbNombreCliente
+            // 
+            this.cmbNombreCliente.FormattingEnabled = true;
+            this.cmbNombreCliente.Location = new System.Drawing.Point(69, 23);
+            this.cmbNombreCliente.Name = "cmbNombreCliente";
+            this.cmbNombreCliente.Size = new System.Drawing.Size(378, 21);
+            this.cmbNombreCliente.TabIndex = 46;
+            this.cmbNombreCliente.SelectedIndexChanged += new System.EventHandler(this.cmbNombreCliente_SelectedIndexChanged);
+            // 
+            // txtCodCliente
+            // 
+            this.txtCodCliente.Location = new System.Drawing.Point(544, 62);
+            this.txtCodCliente.Name = "txtCodCliente";
+            this.txtCodCliente.ReadOnly = true;
+            this.txtCodCliente.Size = new System.Drawing.Size(127, 20);
+            this.txtCodCliente.TabIndex = 47;
+            this.txtCodCliente.Visible = false;
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(699, 501);
+            this.ClientSize = new System.Drawing.Size(699, 542);
+            this.Controls.Add(this.txtCodCliente);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.cmbOrdCola);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.cmbLiquidaciones);
+            this.Controls.Add(this.cmbOrdEntero);
             this.Controls.Add(this.txtquery);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txt_total);
@@ -488,11 +524,10 @@
         private System.Windows.Forms.TextBox txt_subtotal;
         private System.Windows.Forms.TextBox txt_descuento;
         private System.Windows.Forms.TextBox txtquery;
-        private System.Windows.Forms.ComboBox cmbLiquidaciones;
+        private System.Windows.Forms.ComboBox cmbOrdEntero;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtNombreCliente;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txt_telefono;
         private System.Windows.Forms.Label label16;
@@ -500,6 +535,10 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txt_identificacion;
         private System.Windows.Forms.DateTimePicker lblFecha;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox cmbOrdCola;
+        private System.Windows.Forms.ComboBox cmbNombreCliente;
+        private System.Windows.Forms.TextBox txtCodCliente;
     }
 }
 

@@ -19,7 +19,7 @@ namespace FacturacionLiquidacion
             //LOCAL
             //connetionString = "Data Source=.;Initial Catalog=PRODUMAR;Integrated Security=True; ";
             connetionString = "DSN=mba;DRIVER={4D v15 ODBC Driver 32-bit};;Server=10.51.1.11;Port=19812;UID=API;PWD=API;SSL=false;PhysicalConnectionTimeout=30;LoginTimeout=30;QueryTimeout=240;DefaultPageSize=100;NetworkCacheSize=128;CharsEncoding=UTF-8;OpenQuery=false;MSAccess=false;Windev=false ";
-            connetionString = "DSN=MBA3;DRIVER={4D v16 Rx ODBC Driver 64-bit};Uid=API;Pwd=API;";
+            //connetionString = "DSN=MBA3;DRIVER={4D v16 Rx ODBC Driver 64-bit};Uid=API;Pwd=API;";
         }
         //Almacenar en sist_api
         public int Guardar_SIS_API(string query)
@@ -32,7 +32,6 @@ namespace FacturacionLiquidacion
             OdbcTransaction transaction;
             // Start a local transaction.
             transaction = cnn.BeginTransaction();
-
             try
             {
 

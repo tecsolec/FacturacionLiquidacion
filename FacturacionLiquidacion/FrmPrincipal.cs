@@ -21,6 +21,7 @@ namespace FacturacionLiquidacion
         public FrmPrincipal()
         {
             InitializeComponent();
+            cargar_Clientes();
         }
 
         //Evento para consultar liquidaciones segun proyecto
@@ -36,29 +37,49 @@ namespace FacturacionLiquidacion
                 {
                     dat_consultas = new CdaConsultas();
                     DataTable Liq = new DataTable();
-                    DataTable cliente = new DataTable();
+                    DataTable OrdEnt = new DataTable();
+                    DataTable OrdCol = new DataTable();
+                   
 
                     //llenar el combobox con las liquidaciones
+                    /*
                     Liq = dat_consultas.Consultar_Liq_X_Proyecto(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());
                     cmbLiquidaciones.DataSource = Liq;
                     cmbLiquidaciones.DisplayMember = "liquida";
                     cmbLiquidaciones.ValueMember = "liquida";
+                    */
+                    OrdEnt = dat_consultas.Consultar_Ord_Entero(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());                    
+                    cmbOrdEntero.DisplayMember = "PROCESO_ID";
+                    cmbOrdEntero.ValueMember = "DOC_ID_CORP";
+                    cmbOrdEntero.DataSource = OrdEnt;
+                    OrdCol = dat_consultas.Consultar_Ord_Cola(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());                    
+                    cmbOrdCola.DisplayMember = "PROCESO_ID";
+                    cmbOrdCola.ValueMember = "DOC_ID_CORP";
+                    cmbOrdCola.DataSource = OrdCol;
 
                     //LLenando los datos de la empresa
-                    cliente = dat_consultas.Consultar_Cliente(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());
-                    if (cliente.Rows.Count > 0)
-                    { 
-                        txtNombreCliente.Text = cliente.Rows[0][3].ToString();
-                        txt_identificacion.Text = cliente.Rows[0][4].ToString();
-                        txt_telefono.Text = cliente.Rows[0][6].ToString();
-                        txt_direccion.Text = cliente.Rows[0][35].ToString();
-                    }
+                    //cliente = dat_consultas.Consultar_Cliente(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());
+
                 }
             }
             
           
         }
-
+        public void LLenar_Cliente(String _codcliente)
+        {
+            CdaConsultas dat_consultas = new CdaConsultas();
+            DataTable cliente = new DataTable();
+            cliente = dat_consultas.Consultar_Cliente_X_Codigo(_codcliente);
+            //llenando el detalle de la factura
+            if (cliente.Rows.Count > 0)
+            {
+                txt_identificacion.Text = cliente.Rows[0][4].ToString();
+                txt_telefono.Text = cliente.Rows[0][6].ToString();
+                txt_direccion.Text = cliente.Rows[0][35].ToString();
+                txtCodCliente.Text = cliente.Rows[0][0].ToString();
+            }
+            Actualizar_Totales();
+        }
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -146,7 +167,15 @@ namespace FacturacionLiquidacion
             MessageBox.Show("Factura ingresada.");
         }
 
-        
+        public void cargar_Clientes ()
+        {
+            dat_consultas = new CdaConsultas();
+            DataTable Cli = new DataTable();
+            Cli = dat_consultas.Consultar_Clientes();            
+            cmbNombreCliente.DisplayMember = "NOMBRE_CLIENTE";
+            cmbNombreCliente.ValueMember = "CODIGO_CLIENTE_EMPRESA";
+            cmbNombreCliente.DataSource = Cli;
+        }
         public void validar_datos()
         {
             cab = new cabecera_factura();
@@ -156,7 +185,7 @@ namespace FacturacionLiquidacion
             cab.numero_factura = "";
             cab.emision_factura = lblFecha.Text;
             cab.vencimiento_factura = dtpHasta.Text;
-            cab.codigo_cliente = "CL000048";
+            cab.codigo_cliente = txtCodCliente.Text;
             cab.codigo_bodega = "BPT";
             cab.codigo_almacen = "";
             cab.origen = "PRI";
@@ -223,6 +252,7 @@ namespace FacturacionLiquidacion
             CdaConsultas dat_consultas = new CdaConsultas();
             DataTable detalle = new DataTable();
 
+            String cliente = "", codcola = "", codentero = "";
             //llenando el detalle de la factura
             DataTable dt = new DataTable();
             dt.Columns.Add("cod_Pdto", typeof(string));
@@ -230,7 +260,13 @@ namespace FacturacionLiquidacion
             dt.Columns.Add("nomb_Pdto", typeof(string));
             dt.Columns.Add("cantidad", typeof(double));
             dt.Columns.Add("precio", typeof(double));
-            detalle = dat_consultas.Consultar_Det_Factura(_proy,_subproy,_liqui);
+            if (!String.IsNullOrEmpty(txtCodCliente.Text))
+                cliente = txtCodCliente.Text;
+            if (!String.IsNullOrEmpty(cmbOrdEntero.Text))
+                codentero = cmbOrdEntero.Text;
+            if (!String.IsNullOrEmpty(cmbOrdCola.Text))
+                codcola = cmbOrdCola.Text;
+            detalle = dat_consultas.Consultar_Det_Factura(_proy,_subproy, cliente, codentero,codcola);
             grdDetalle.AutoGenerateColumns = true;
 
             foreach (DataRow row in detalle.Rows)
@@ -249,42 +285,62 @@ namespace FacturacionLiquidacion
                     precio = Convert.ToDouble(row[4].ToString());
                 dt.Rows.Add(codprod, categoria, nomprod, cant , precio);
             }
-
-            grdDetalle.DataSource = dt;
-            grdDetalle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            grdDetalle.Columns[0].ReadOnly = true;
-            grdDetalle.Columns[0].HeaderText = "Código";
-            grdDetalle.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdDetalle.Columns[0].Width = 150;
-            grdDetalle.Columns[1].ReadOnly = true;
-            grdDetalle.Columns[1].HeaderText = "Categoria";
-            grdDetalle.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdDetalle.Columns[2].ReadOnly = true;
-            grdDetalle.Columns[2].HeaderText = "Descripción";
-            grdDetalle.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdDetalle.Columns[3].ReadOnly = true;
-            //columna cantidad
-            grdDetalle.Columns[3].HeaderText = "Cant.";
-            grdDetalle.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdDetalle.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdDetalle.Columns[3].Width = 80;
-            grdDetalle.Columns[3].ReadOnly = false;
-            //columna precio
-            grdDetalle.Columns[4].HeaderText = "PVP Unit";
-            grdDetalle.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            grdDetalle.Columns[4].DefaultCellStyle.Format = "N2";
-            grdDetalle.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            grdDetalle.Columns[4].Width = 120;
-            grdDetalle.Columns[4].ReadOnly = false;
-
+            if (detalle.Rows.Count > 0) { 
+                grdDetalle.DataSource = dt;
+                grdDetalle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                grdDetalle.Columns[0].ReadOnly = true;
+                grdDetalle.Columns[0].HeaderText = "Código";
+                grdDetalle.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                grdDetalle.Columns[0].Width = 150;
+                grdDetalle.Columns[1].ReadOnly = true;
+                grdDetalle.Columns[1].HeaderText = "Categoria";
+                grdDetalle.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                grdDetalle.Columns[2].ReadOnly = true;
+                grdDetalle.Columns[2].HeaderText = "Descripción";
+                grdDetalle.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                grdDetalle.Columns[3].ReadOnly = true;
+                //columna cantidad
+                grdDetalle.Columns[3].HeaderText = "Cant.";
+                grdDetalle.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                grdDetalle.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                grdDetalle.Columns[3].Width = 80;
+                grdDetalle.Columns[3].ReadOnly = false;
+                //columna precio
+                grdDetalle.Columns[4].HeaderText = "PVP Unit";
+                grdDetalle.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                grdDetalle.Columns[4].DefaultCellStyle.Format = "N2";
+                grdDetalle.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdDetalle.Columns[4].Width = 120;
+                grdDetalle.Columns[4].ReadOnly = false;
+                }
             Actualizar_Totales();
+            
         }
 
 
         //Evento al escoger una liquidación
         private void cmbLiquidaciones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LLenar_Detalle(txtProyecto.Text.Trim(),txt_SubProyecto.Text.Trim(),cmbLiquidaciones.Text);
+            LLenar_Detalle(txtProyecto.Text.Trim(),txt_SubProyecto.Text.Trim(),cmbOrdEntero.Text);
+        }
+        private void cmbOrdEntero_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          LLenar_Detalle(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim(), cmbOrdEntero.Text);
+        }
+        private void cmbOrdCola_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          LLenar_Detalle(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim(), cmbOrdCola.Text);
+        }
+
+        private void cmbNombreCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LLenar_Cliente(cmbNombreCliente.SelectedValue.ToString());
+            LLenar_Detalle(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim(), "");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
