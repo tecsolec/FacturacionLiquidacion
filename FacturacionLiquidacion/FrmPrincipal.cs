@@ -189,8 +189,10 @@ namespace FacturacionLiquidacion
             cab.codigo_bodega = "BPT";
             cab.codigo_almacen = "";
             cab.origen = "PRI";
-            cab.multidimension = "01;;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;;;";  //8 campos
-            cab.multidimension = "";  //8 campos
+            cab.multidimension = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;{0};"+cmbNombreCliente+" LIQ. "+txtLiquidacion.Text+";";  //8 campos
+            //cab.multidimension = "";  //8 campos
+
+            cab.multidimension.Replace("{0}","");
 
             //datos obligatorios detalle
             lista_detalles = new List<detalle_factura>();
@@ -201,8 +203,8 @@ namespace FacturacionLiquidacion
                 {
                     det = new detalle_factura();
                     det.numero_factura = cab.numero_factura;
-                    //det.multi_detalle = "01;;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;;;";  //8 campos
-                    det.multi_detalle = "01;;;;;;;";  //8 campos
+                    det.multi_detalle = "01;;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;;;";  //8 campos
+                    //det.multi_detalle = "01;;;;;;;";  //8 campos
                     det.codigo_producto = row.Cells[0].Value.ToString();
                     det.cantidad = Convert.ToDouble(row.Cells[3].Value.ToString());
                     det.precio_unitario = Convert.ToDouble(row.Cells[4].Value.ToString());
