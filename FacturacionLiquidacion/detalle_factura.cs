@@ -58,7 +58,7 @@ namespace FacturacionLiquidacion
             cantidad = 0;
             precio_unitario = 0;
             unidades_gratis = 0;
-            iva = 1; // si va con IVA
+            iva = 0; // si va con IVA
             descuento = 0;
             tamanio = "";
             peso = 0;

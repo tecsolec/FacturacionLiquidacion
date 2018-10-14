@@ -192,7 +192,7 @@ namespace FacturacionLiquidacion
             cab.multidimension = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;{0};"+cmbNombreCliente+" LIQ. "+txtLiquidacion.Text+";";  //8 campos
             //cab.multidimension = "";  //8 campos
 
-            cab.multidimension.Replace("{0}","");
+            cab.multidimension.Replace("{0}","01");
 
             //datos obligatorios detalle
             lista_detalles = new List<detalle_factura>();
@@ -203,7 +203,8 @@ namespace FacturacionLiquidacion
                 {
                     det = new detalle_factura();
                     det.numero_factura = cab.numero_factura;
-                    det.multi_detalle = "01;;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;;;";  //8 campos
+                    det.multi_detalle = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;{0};"+txtLiquidacion.Text+";";  //8 campos
+                    det.multi_detalle.Replace("{0}", "01");
                     //det.multi_detalle = "01;;;;;;;";  //8 campos
                     det.codigo_producto = row.Cells[0].Value.ToString();
                     det.cantidad = Convert.ToDouble(row.Cells[3].Value.ToString());
@@ -212,9 +213,7 @@ namespace FacturacionLiquidacion
                     lista_detalles.Add(det);
                 }
             }
-
         }
-
 
         public void Actualizar_Totales()
         {
@@ -228,8 +227,6 @@ namespace FacturacionLiquidacion
                     subtotal = subtotal + totalxproducto;
                 }
             }
-
-
             total = subtotal - descuento;
             txt_subtotal.Text = subtotal.ToString("N2");
             txt_descuento.Text = descuento.ToString("N2");
