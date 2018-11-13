@@ -84,9 +84,9 @@ namespace FacturacionLiquidacion
                     cmbOrdCola.ValueMember = "DOC_ID_CORP";
                     cmbOrdCola.DataSource = OrdCol;
 
-                    ((ListBox)cblEntero).DataSource = OrdCol;
-                    ((ListBox)cblEntero).DisplayMember = "PROCESO_ID";
-                    ((ListBox)cblEntero).ValueMember = "DOC_ID_CORP";
+                    ((ListBox)cblCola).DataSource = OrdCol;
+                    ((ListBox)cblCola).DisplayMember = "PROCESO_ID";
+                    ((ListBox)cblCola).ValueMember = "DOC_ID_CORP";
 
                     //LLenando los datos de la empresa
                     //cliente = dat_consultas.Consultar_Cliente(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());
