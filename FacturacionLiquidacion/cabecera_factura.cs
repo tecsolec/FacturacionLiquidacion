@@ -52,7 +52,7 @@ namespace FacturacionLiquidacion
             codigo_bodega = "";
             descuento = 0;
             codigo_almacen = "";
-            codigo_caja = "1";
+            codigo_caja = "001";
             vendedor_comisiona = 0;
             telefono_cliente = "";
             direccion_cliente = "";

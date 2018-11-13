@@ -22,6 +22,11 @@ namespace FacturacionLiquidacion
         {
             InitializeComponent();
             cargar_Clientes();
+            /*
+             * cblEntero.Items.AddRange(new object[] {
+                "Domestic Address", "International Address", "Postal Address",
+                "Parcel Address", "Home Address", "Business Address" });
+                */
         }
 
         //Evento para consultar liquidaciones segun proyecto
@@ -52,10 +57,36 @@ namespace FacturacionLiquidacion
                     cmbOrdEntero.DisplayMember = "PROCESO_ID";
                     cmbOrdEntero.ValueMember = "DOC_ID_CORP";
                     cmbOrdEntero.DataSource = OrdEnt;
+                    //cblEntero.DatasBindingMembersDataSource = OrdEnt;
+                    /*
+                    foreach (DataRow dr in OrdEnt.Rows)
+                    {
+                        for (int i = 0; i < cblEntero.Items.Count; i++)
+                        {
+                            if (dr["valueMember"].ToString() == ((DataRowView)cblEntero.Items[i])[0].ToString())
+                            {
+                                cblEntero.SetItemChecked(i, true);
+                            }
+                        }
+                    }
+                    
+                    cblEntero.DisplayMember = "PROCESO_ID";
+                    cblEntero.ValueMember = "DOC_ID_CORP";
+                    cblEntero.DataSource = OrdEnt;
+                    */
+
+                    ((ListBox)cblEntero).DataSource = OrdEnt;
+                    ((ListBox)cblEntero).DisplayMember = "PROCESO_ID";
+                    ((ListBox)cblEntero).ValueMember = "DOC_ID_CORP";
+
                     OrdCol = dat_consultas.Consultar_Ord_Cola(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());                    
                     cmbOrdCola.DisplayMember = "PROCESO_ID";
                     cmbOrdCola.ValueMember = "DOC_ID_CORP";
                     cmbOrdCola.DataSource = OrdCol;
+
+                    ((ListBox)cblEntero).DataSource = OrdCol;
+                    ((ListBox)cblEntero).DisplayMember = "PROCESO_ID";
+                    ((ListBox)cblEntero).ValueMember = "DOC_ID_CORP";
 
                     //LLenando los datos de la empresa
                     //cliente = dat_consultas.Consultar_Cliente(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());
@@ -187,12 +218,12 @@ namespace FacturacionLiquidacion
             cab.vencimiento_factura = dtpHasta.Text;
             cab.codigo_cliente = txtCodCliente.Text;
             cab.codigo_bodega = "BPT";
-            cab.codigo_almacen = "";
+            cab.codigo_almacen = "PRI";
             cab.origen = "PRI";
-            cab.multidimension = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;{0};"+cmbNombreCliente+" LIQ. "+txtLiquidacion.Text+";";  //8 campos
-            //cab.multidimension = "";  //8 campos
+            cab.multidimension = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;{0};"+cmbNombreCliente.Text+" LIQ. "+txtLiquidacion.Text+";";  //8 campos
+                                                                                                                                                           //cab.multidimension = "";  //8 campos
 
-            cab.multidimension.Replace("{0}","01");
+            cab.multidimension = cab.multidimension.Replace("{0}","01");
 
             //datos obligatorios detalle
             lista_detalles = new List<detalle_factura>();
@@ -204,12 +235,13 @@ namespace FacturacionLiquidacion
                     det = new detalle_factura();
                     det.numero_factura = cab.numero_factura;
                     det.multi_detalle = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;{0};"+txtLiquidacion.Text+";";  //8 campos
-                    det.multi_detalle.Replace("{0}", "01");
+                    det.multi_detalle = det.multi_detalle.Replace("{0}", "01");
                     //det.multi_detalle = "01;;;;;;;";  //8 campos
                     det.codigo_producto = row.Cells[0].Value.ToString();
                     det.cantidad = Convert.ToDouble(row.Cells[3].Value.ToString());
                     det.precio_unitario = Convert.ToDouble(row.Cells[4].Value.ToString());
                     det.total_neto = det.precio_unitario * det.cantidad;
+                    det.lote_ubicacion = txtProyecto.Text + "-" + txt_SubProyecto.Text + ";" + det.cantidad + ";N/U;" + det.cantidad;
                     lista_detalles.Add(det);
                 }
             }
