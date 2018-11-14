@@ -379,5 +379,10 @@ namespace FacturacionLiquidacion
         {
             this.Close();
         }
+
+        private void btnPrecios_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
