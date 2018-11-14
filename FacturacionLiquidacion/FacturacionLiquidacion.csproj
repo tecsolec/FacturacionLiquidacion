@@ -54,6 +54,7 @@
     <Compile Include="CdaConsultasMBA.cs" />
     <Compile Include="CdaConsultas.cs" />
     <Compile Include="cuota_factura.cs" />
+    <Compile Include="datos_fiscales.cs" />
     <Compile Include="detalle_factura.cs" />
     <Compile Include="FrmLiquidacion.cs">
       <SubType>Form</SubType>

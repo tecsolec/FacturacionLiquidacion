@@ -122,7 +122,6 @@ namespace FacturacionLiquidacion
         {
             string query = "";
 
-
             string code_s = "04";
             string corp_s = "PRODU";
             string group_category = "API";
@@ -137,6 +136,7 @@ namespace FacturacionLiquidacion
             
             
             cuota_factura cuota = new cuota_factura();
+            datos_fiscales fiscal = new datos_fiscales();
             Informacion_Adicional info_ad = new Informacion_Adicional();
             validar_datos();
 
@@ -166,7 +166,13 @@ namespace FacturacionLiquidacion
 
                 i++;
             }
-           
+            string texto6_x = fiscal.lista_datos_1 + "|" + fiscal.lista_datos_2 + "|" + fiscal.lista_datos_3 + "|" + fiscal.lista_datos_4 + "|" + fiscal.lista_datos_5 + "|" + fiscal.lista_datos_6 + "|" + fiscal.lista_datos_7 + "|" + fiscal.lista_datos_8 + "|" +
+                            "|||||" +
+                            "|||||" +
+                            "|||||" +
+                            "|||||" +
+                            "|||||||" +
+                            "||";
             texto3_x = detalle;
 
             texto4_x = cuota.numero_factura + "|" + cuota.fecha_factura + "|" + cuota.valor + "|" + cuota.dias + "|" + cuota.porcentaje; //detalle cuotas
@@ -184,9 +190,9 @@ namespace FacturacionLiquidacion
             local_destino = "PRI";
             IDConsulta_s = "11-PRODU";
 
-            query = "insert into sist_api(CODE_s,CORP_s,GROUP_CATEGORY_s,INTEGER_1,LONGINT_1,ORIGIN,TEXTO1_10,TEXTO1_24,TEXTO2_X,TEXTO3_X,NumDoc_s,Local_origen,Local_destino,IDConsulta_s,Opcion_i)";
+            query = "insert into sist_api(CODE_s,CORP_s,GROUP_CATEGORY_s,INTEGER_1,LONGINT_1,ORIGIN,TEXTO1_10,TEXTO1_24,TEXTO2_X,TEXTO3_X,NumDoc_s,Local_origen,Local_destino,IDConsulta_s,Opcion_i,texto6_x)";
             query = query + " values ('" + code_s + "','" + corp_s + "','" + group_category + "'," + integer_1 + "," + logint_1 + ",'" + origin + "','" + texto1_10 + "','" + text1_24 + "','" + text2_x + "','" + texto3_x + "','";
-            query = query + numdoc_s + "','" + local_origen + "','" + local_destino + "','" + IDConsulta_s + "'," + Opcion_i + ")";
+            query = query + numdoc_s + "','" + local_origen + "','" + local_destino + "','" + IDConsulta_s + "'," + Opcion_i + "," + texto6_x + ")";
 
             txtquery.Text = query;
             //MessageBox.Show(query);
@@ -220,7 +226,7 @@ namespace FacturacionLiquidacion
             cab.codigo_bodega = "BPT";
             cab.codigo_almacen = "PRI";
             cab.origen = "PRI";
-            cab.multidimension = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;{0};"+cmbNombreCliente.Text+" LIQ. "+txtLiquidacion.Text+";";  //8 campos
+            cab.multidimension = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";" + txt_identificacion.Text + ";;{0};" + cmbNombreCliente.Text+" LIQ. "+txtLiquidacion.Text+";";  //8 campos
                                                                                                                                                            //cab.multidimension = "";  //8 campos
 
             cab.multidimension = cab.multidimension.Replace("{0}","01");
@@ -234,7 +240,7 @@ namespace FacturacionLiquidacion
                 {
                     det = new detalle_factura();
                     det.numero_factura = cab.numero_factura;
-                    det.multi_detalle = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";;;{0};"+txtLiquidacion.Text+";";  //8 campos
+                    det.multi_detalle = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";" + txt_identificacion.Text + ";;{0};" + txtLiquidacion.Text+";";  //8 campos
                     det.multi_detalle = det.multi_detalle.Replace("{0}", "01");
                     //det.multi_detalle = "01;;;;;;;";  //8 campos
                     det.codigo_producto = row.Cells[0].Value.ToString();
