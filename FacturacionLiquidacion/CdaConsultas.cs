@@ -411,11 +411,11 @@ namespace FacturacionLiquidacion
 
 
         //Almacenar en sist_api
-        public int Guardar_SIS_API(string query)
+        public int Guardar_Datos(string query)
         {
             int ultimo_movimiento = 0;
-
-
+            cnn = new SqlConnection();
+            cnn.ConnectionString = connetionString;
             //Iniciando la transaccion
             cnn.Open();
             SqlTransaction transaction;

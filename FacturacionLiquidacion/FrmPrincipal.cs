@@ -53,12 +53,13 @@ namespace FacturacionLiquidacion
                     cmbLiquidaciones.DisplayMember = "liquida";
                     cmbLiquidaciones.ValueMember = "liquida";
                     */
-                    OrdEnt = dat_consultas.Consultar_Ord_Entero(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());                    
+                    OrdEnt = dat_consultas.Consultar_Ord_Entero(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());
+                    /*
                     cmbOrdEntero.DisplayMember = "PROCESO_ID";
                     cmbOrdEntero.ValueMember = "DOC_ID_CORP";
                     cmbOrdEntero.DataSource = OrdEnt;
                     //cblEntero.DatasBindingMembersDataSource = OrdEnt;
-                    /*
+                    
                     foreach (DataRow dr in OrdEnt.Rows)
                     {
                         for (int i = 0; i < cblEntero.Items.Count; i++)
@@ -78,12 +79,13 @@ namespace FacturacionLiquidacion
                     ((ListBox)cblEntero).DataSource = OrdEnt;
                     ((ListBox)cblEntero).DisplayMember = "PROCESO_ID";
                     ((ListBox)cblEntero).ValueMember = "DOC_ID_CORP";
-
-                    OrdCol = dat_consultas.Consultar_Ord_Cola(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());                    
+                    
+                    OrdCol = dat_consultas.Consultar_Ord_Cola(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());
+                    /*
                     cmbOrdCola.DisplayMember = "PROCESO_ID";
                     cmbOrdCola.ValueMember = "DOC_ID_CORP";
                     cmbOrdCola.DataSource = OrdCol;
-
+                    */
                     ((ListBox)cblCola).DataSource = OrdCol;
                     ((ListBox)cblCola).DisplayMember = "PROCESO_ID";
                     ((ListBox)cblCola).ValueMember = "DOC_ID_CORP";
@@ -190,16 +192,36 @@ namespace FacturacionLiquidacion
             local_destino = "PRI";
             IDConsulta_s = "11-PRODU";
 
-            query = "insert into sist_api(CODE_s,CORP_s,GROUP_CATEGORY_s,INTEGER_1,LONGINT_1,ORIGIN,TEXTO1_10,TEXTO1_24,TEXTO2_X,TEXTO3_X,NumDoc_s,Local_origen,Local_destino,IDConsulta_s,Opcion_i,texto6_x)";
+            query = "insert into sist_api(CODE_s,CORP_s,GROUP_CATEGORY_s,INTEGER_1,LONGINT_1,ORIGIN,TEXTO1_10,TEXTO1_24,TEXTO2_X,TEXTO3_X,NumDoc_s,Local_origen,Local_destino,IDConsulta_s,Opcion_i,TEXTO6_X)";
             query = query + " values ('" + code_s + "','" + corp_s + "','" + group_category + "'," + integer_1 + "," + logint_1 + ",'" + origin + "','" + texto1_10 + "','" + text1_24 + "','" + text2_x + "','" + texto3_x + "','";
-            query = query + numdoc_s + "','" + local_origen + "','" + local_destino + "','" + IDConsulta_s + "'," + Opcion_i + "," + texto6_x + ")";
+            query = query + numdoc_s + "','" + local_origen + "','" + local_destino + "','" + IDConsulta_s + "'," + Opcion_i + ",'" + texto6_x + "')";
 
             txtquery.Text = query;
             //MessageBox.Show(query);
             //guardando el query en la base de datos
             dat_consultas_api = new CdaConsultasmba();
             dat_consultas_api.Guardar_SIS_API(query);
-
+            string codentero = "";
+            if (cblEntero.CheckedItems.Count > 0)
+            {
+                foreach (DataRowView item in cblEntero.CheckedItems)
+                {
+                    codentero += string.Format("{0},", item["PROCESO_ID"]);
+                }
+                codentero = codentero.TrimEnd(','); //codentero.Substring(codentero.Length-1,1);
+            }
+            String codcola = "";
+            if (cblCola.CheckedItems.Count > 0)
+            {
+                foreach (DataRowView item in cblCola.CheckedItems)
+                {
+                    codcola += string.Format("{0},", item["PROCESO_ID"]);
+                }
+                codcola = codcola.TrimEnd(','); //codentero.Substring(codentero.Length-1,1);
+            }
+            query = "insert into liquifact.dbo.ordenes_facturadas select * from string_split('"+ codentero +"," + codcola + "',',')";
+            dat_consultas = new CdaConsultas();
+            dat_consultas.Guardar_Datos(query);
 
             MessageBox.Show("Factura ingresada.");
         }
@@ -299,10 +321,24 @@ namespace FacturacionLiquidacion
             dt.Columns.Add("precio", typeof(double));
             if (!String.IsNullOrEmpty(txtCodCliente.Text))
                 cliente = txtCodCliente.Text;
-            if (!String.IsNullOrEmpty(cmbOrdEntero.Text))
-                codentero = cmbOrdEntero.Text;
-            if (!String.IsNullOrEmpty(cmbOrdCola.Text))
-                codcola = cmbOrdCola.Text;
+            codentero = "";
+            if (cblEntero.CheckedItems.Count>0)
+            {
+                foreach (DataRowView item in cblEntero.CheckedItems)
+                {
+                    codentero += string.Format("{0},", item["PROCESO_ID"]);
+                }
+                codentero = codentero.TrimEnd(','); //codentero.Substring(codentero.Length-1,1);
+            }
+            codcola = "";
+            if (cblCola.CheckedItems.Count > 0)
+            {
+                foreach (DataRowView item in cblCola.CheckedItems)
+                {
+                    codcola += string.Format("{0},", item["PROCESO_ID"]);
+                }
+                codcola = codcola.TrimEnd(','); //codentero.Substring(codentero.Length-1,1);
+            }
             detalle = dat_consultas.Consultar_Det_Factura(_proy,_subproy, cliente, codentero,codcola);
             grdDetalle.AutoGenerateColumns = true;
 
@@ -329,9 +365,11 @@ namespace FacturacionLiquidacion
                 grdDetalle.Columns[0].HeaderText = "Código";
                 grdDetalle.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 grdDetalle.Columns[0].Width = 150;
+                //columna categoria
                 grdDetalle.Columns[1].ReadOnly = true;
                 grdDetalle.Columns[1].HeaderText = "Categoria";
                 grdDetalle.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //columna descripcion
                 grdDetalle.Columns[2].ReadOnly = true;
                 grdDetalle.Columns[2].HeaderText = "Descripción";
                 grdDetalle.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -349,7 +387,8 @@ namespace FacturacionLiquidacion
                 grdDetalle.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDetalle.Columns[4].Width = 120;
                 grdDetalle.Columns[4].ReadOnly = false;
-                }
+                } else
+                grdDetalle.DataSource = null;
             Actualizar_Totales();
             
         }

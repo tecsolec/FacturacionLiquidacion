@@ -327,7 +327,6 @@
             this.cmbOrdEntero.Size = new System.Drawing.Size(142, 21);
             this.cmbOrdEntero.TabIndex = 40;
             this.cmbOrdEntero.Visible = false;
-            this.cmbOrdEntero.SelectedIndexChanged += new System.EventHandler(this.cmbOrdEntero_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -456,7 +455,6 @@
             this.cmbOrdCola.Size = new System.Drawing.Size(142, 21);
             this.cmbOrdCola.TabIndex = 44;
             this.cmbOrdCola.Visible = false;
-            this.cmbOrdCola.SelectedIndexChanged += new System.EventHandler(this.cmbOrdCola_SelectedIndexChanged);
             // 
             // txtCodCliente
             // 
@@ -565,6 +563,7 @@
             this.cblEntero.Name = "cblEntero";
             this.cblEntero.Size = new System.Drawing.Size(120, 79);
             this.cblEntero.TabIndex = 59;
+            this.cblEntero.SelectedIndexChanged += new System.EventHandler(this.cmbOrdEntero_SelectedIndexChanged);
             // 
             // cblCola
             // 
@@ -573,6 +572,7 @@
             this.cblCola.Name = "cblCola";
             this.cblCola.Size = new System.Drawing.Size(120, 79);
             this.cblCola.TabIndex = 60;
+            this.cblCola.SelectedIndexChanged += new System.EventHandler(this.cmbOrdCola_SelectedIndexChanged);
             // 
             // btnPrecios
             // 
