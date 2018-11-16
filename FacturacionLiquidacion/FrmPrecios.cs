@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace FacturacionLiquidacion
 {
-    public partial class Form1 : Form
+    public partial class FrmPrecios : Form
     {
-        public Form1()
+        public FrmPrecios()
         {
             InitializeComponent();
         }

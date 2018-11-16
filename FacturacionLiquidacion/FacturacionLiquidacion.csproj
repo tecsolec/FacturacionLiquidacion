@@ -56,11 +56,11 @@
     <Compile Include="cuota_factura.cs" />
     <Compile Include="datos_fiscales.cs" />
     <Compile Include="detalle_factura.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FrmPrecios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmPrecios.Designer.cs">
+      <DependentUpon>FrmPrecios.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmLiquidacion.cs">
       <SubType>Form</SubType>
@@ -79,8 +79,8 @@
     <Compile Include="Liquidacion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FrmPrecios.resx">
+      <DependentUpon>FrmPrecios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLiquidacion.resx">
       <DependentUpon>FrmLiquidacion.cs</DependentUpon>

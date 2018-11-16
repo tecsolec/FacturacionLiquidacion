@@ -172,7 +172,6 @@ namespace FacturacionLiquidacion
                             "|||||" +
                             "|||||" +
                             "|||||" +
-                            "|||||" +
                             "|||||||" +
                             "||";
             texto3_x = detalle;
@@ -249,7 +248,7 @@ namespace FacturacionLiquidacion
             cab.codigo_almacen = "PRI";
             cab.origen = "PRI";
             cab.multidimension = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";" + txt_identificacion.Text + ";;{0};" + cmbNombreCliente.Text+" LIQ. "+txtLiquidacion.Text+";";  //8 campos
-                                                                                                                                                           //cab.multidimension = "";  //8 campos
+            cab.memo_factura = txtMemo.Text;                                                                                                                                    //cab.multidimension = "";  //8 campos
 
             cab.multidimension = cab.multidimension.Replace("{0}","01");
 
@@ -277,13 +276,17 @@ namespace FacturacionLiquidacion
 
         public void Actualizar_Totales()
         {
-            double subtotal = 0,total = 0,descuento = 0;
+            double subtotal = 0,total = 0,descuento = 0, totalentero=0, totalcola=0;
 
             foreach (DataGridViewRow row in grdDetalle.Rows)
             {
                 if (!string.IsNullOrEmpty(Convert.ToString(row.Cells[0].Value)))
                 {
                     double totalxproducto = Convert.ToDouble(row.Cells[3].Value.ToString()) * Convert.ToDouble(row.Cells[4].Value.ToString());
+                    if (row.Cells[1].Value.ToString().Contains("Entero"))
+                        totalentero += Convert.ToDouble(row.Cells[3].Value.ToString());
+                    else
+                        totalcola += Convert.ToDouble(row.Cells[3].Value.ToString());
                     subtotal = subtotal + totalxproducto;
                 }
             }
@@ -291,6 +294,9 @@ namespace FacturacionLiquidacion
             txt_subtotal.Text = subtotal.ToString("N2");
             txt_descuento.Text = descuento.ToString("N2");
             txt_total.Text = total.ToString("N2");
+            textBox1.Text = totalentero.ToString("0.00");
+            textBox2.Text = totalcola.ToString("0.00");
+            textBox3.Text = (totalentero+totalcola).ToString("0.00");
         }
 
 
@@ -421,7 +427,19 @@ namespace FacturacionLiquidacion
 
         private void btnPrecios_Click(object sender, EventArgs e)
         {
+            FrmPrecios pantalla_precios = new FrmPrecios();
+            pantalla_precios.Show();
+        }
 
+        private void grdDetalle_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if ( e.RowIndex < grdDetalle.Rows.Count - 1 )
+            {
+                if (Convert.ToDouble(grdDetalle.Rows[e.RowIndex].Cells[4].Value.ToString()) == 0)
+                {
+                    grdDetalle.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Beige;
+                }
+            }
         }
     }
 }

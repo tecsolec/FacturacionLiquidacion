@@ -1,6 +1,6 @@
 ﻿namespace FacturacionLiquidacion
 {
-    partial class Form1
+    partial class FrmPrecios
     {
         /// <summary>
         /// Required designer variable.

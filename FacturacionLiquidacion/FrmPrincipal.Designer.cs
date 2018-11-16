@@ -76,7 +76,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtMemo = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.cblEntero = new System.Windows.Forms.CheckedListBox();
             this.cblCola = new System.Windows.Forms.CheckedListBox();
@@ -203,11 +203,12 @@
             // grdDetalle
             // 
             this.grdDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdDetalle.Location = new System.Drawing.Point(11, 221);
+            this.grdDetalle.Location = new System.Drawing.Point(11, 208);
             this.grdDetalle.Name = "grdDetalle";
-            this.grdDetalle.Size = new System.Drawing.Size(675, 190);
+            this.grdDetalle.Size = new System.Drawing.Size(675, 203);
             this.grdDetalle.TabIndex = 22;
             this.grdDetalle.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDetalle_CellValueChanged);
+            this.grdDetalle.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.grdDetalle_RowPrePaint);
             // 
             // button1
             // 
@@ -494,7 +495,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(270, 422);
+            this.label19.Location = new System.Drawing.Point(270, 444);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(75, 13);
             this.label19.TabIndex = 51;
@@ -512,7 +513,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(264, 444);
+            this.label20.Location = new System.Drawing.Point(264, 426);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(81, 13);
             this.label20.TabIndex = 53;
@@ -536,15 +537,14 @@
             this.label21.TabIndex = 55;
             this.label21.Text = "Total:";
             // 
-            // textBox4
+            // txtMemo
             // 
-            this.textBox4.Location = new System.Drawing.Point(71, 448);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(182, 53);
-            this.textBox4.TabIndex = 58;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMemo.Location = new System.Drawing.Point(71, 448);
+            this.txtMemo.Multiline = true;
+            this.txtMemo.Name = "txtMemo";
+            this.txtMemo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMemo.Size = new System.Drawing.Size(182, 53);
+            this.txtMemo.TabIndex = 58;
             // 
             // label22
             // 
@@ -595,7 +595,7 @@
             this.Controls.Add(this.btnPrecios);
             this.Controls.Add(this.cblCola);
             this.Controls.Add(this.cblEntero);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtMemo);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label21);
@@ -695,7 +695,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtMemo;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.CheckedListBox cblEntero;
         private System.Windows.Forms.CheckedListBox cblCola;
