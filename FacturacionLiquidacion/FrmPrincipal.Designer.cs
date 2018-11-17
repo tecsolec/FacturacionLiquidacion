@@ -53,7 +53,6 @@
             this.txt_subtotal = new System.Windows.Forms.TextBox();
             this.txt_descuento = new System.Windows.Forms.TextBox();
             this.txtquery = new System.Windows.Forms.TextBox();
-            this.cmbOrdEntero = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbNombreCliente = new System.Windows.Forms.ComboBox();
             this.txt_telefono = new System.Windows.Forms.TextBox();
@@ -66,7 +65,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.DateTimePicker();
             this.label17 = new System.Windows.Forms.Label();
-            this.cmbOrdCola = new System.Windows.Forms.ComboBox();
             this.txtCodCliente = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.txtLiquidacion = new System.Windows.Forms.TextBox();
@@ -81,6 +79,10 @@
             this.cblEntero = new System.Windows.Forms.CheckedListBox();
             this.cblCola = new System.Windows.Forms.CheckedListBox();
             this.btnPrecios = new System.Windows.Forms.Button();
+            this.txOrigen = new System.Windows.Forms.TextBox();
+            this.txBodega = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdDetalle)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -320,15 +322,6 @@
             this.txtquery.Size = new System.Drawing.Size(292, 20);
             this.txtquery.TabIndex = 38;
             // 
-            // cmbOrdEntero
-            // 
-            this.cmbOrdEntero.FormattingEnabled = true;
-            this.cmbOrdEntero.Location = new System.Drawing.Point(15, 49);
-            this.cmbOrdEntero.Name = "cmbOrdEntero";
-            this.cmbOrdEntero.Size = new System.Drawing.Size(142, 21);
-            this.cmbOrdEntero.TabIndex = 40;
-            this.cmbOrdEntero.Visible = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cmbNombreCliente);
@@ -447,15 +440,6 @@
             this.label17.Size = new System.Drawing.Size(64, 13);
             this.label17.TabIndex = 45;
             this.label17.Text = "Ord. Cola:";
-            // 
-            // cmbOrdCola
-            // 
-            this.cmbOrdCola.FormattingEnabled = true;
-            this.cmbOrdCola.Location = new System.Drawing.Point(15, 71);
-            this.cmbOrdCola.Name = "cmbOrdCola";
-            this.cmbOrdCola.Size = new System.Drawing.Size(142, 21);
-            this.cmbOrdCola.TabIndex = 44;
-            this.cmbOrdCola.Visible = false;
             // 
             // txtCodCliente
             // 
@@ -587,11 +571,51 @@
             this.btnPrecios.UseVisualStyleBackColor = true;
             this.btnPrecios.Click += new System.EventHandler(this.btnPrecios_Click);
             // 
+            // txOrigen
+            // 
+            this.txOrigen.Enabled = false;
+            this.txOrigen.Location = new System.Drawing.Point(71, 53);
+            this.txOrigen.Name = "txOrigen";
+            this.txOrigen.Size = new System.Drawing.Size(53, 20);
+            this.txOrigen.TabIndex = 62;
+            // 
+            // txBodega
+            // 
+            this.txBodega.Enabled = false;
+            this.txBodega.Location = new System.Drawing.Point(71, 77);
+            this.txBodega.Name = "txBodega";
+            this.txBodega.Size = new System.Drawing.Size(53, 20);
+            this.txBodega.TabIndex = 63;
+            // 
+            // label23
+            // 
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(6, 54);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(63, 16);
+            this.label23.TabIndex = 64;
+            this.label23.Text = "Origen:";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label24
+            // 
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(2, 78);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(63, 16);
+            this.label24.TabIndex = 65;
+            this.label24.Text = "Bodega:";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(699, 553);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.txBodega);
+            this.Controls.Add(this.txOrigen);
             this.Controls.Add(this.btnPrecios);
             this.Controls.Add(this.cblCola);
             this.Controls.Add(this.cblEntero);
@@ -607,11 +631,9 @@
             this.Controls.Add(this.label18);
             this.Controls.Add(this.txtCodCliente);
             this.Controls.Add(this.label17);
-            this.Controls.Add(this.cmbOrdCola);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.cmbOrdEntero);
             this.Controls.Add(this.txtquery);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txt_total);
@@ -672,7 +694,6 @@
         private System.Windows.Forms.TextBox txt_subtotal;
         private System.Windows.Forms.TextBox txt_descuento;
         private System.Windows.Forms.TextBox txtquery;
-        private System.Windows.Forms.ComboBox cmbOrdEntero;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label14;
@@ -684,7 +705,6 @@
         private System.Windows.Forms.TextBox txt_identificacion;
         private System.Windows.Forms.DateTimePicker lblFecha;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox cmbOrdCola;
         private System.Windows.Forms.ComboBox cmbNombreCliente;
         private System.Windows.Forms.TextBox txtCodCliente;
         private System.Windows.Forms.Label label18;
@@ -700,6 +720,10 @@
         private System.Windows.Forms.CheckedListBox cblEntero;
         private System.Windows.Forms.CheckedListBox cblCola;
         private System.Windows.Forms.Button btnPrecios;
+        private System.Windows.Forms.TextBox txOrigen;
+        private System.Windows.Forms.TextBox txBodega;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
     }
 }
 

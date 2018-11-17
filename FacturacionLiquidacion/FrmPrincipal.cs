@@ -44,7 +44,8 @@ namespace FacturacionLiquidacion
                     DataTable Liq = new DataTable();
                     DataTable OrdEnt = new DataTable();
                     DataTable OrdCol = new DataTable();
-                   
+                    txOrigen.Text = "";
+                    txBodega.Text = "";
 
                     //llenar el combobox con las liquidaciones
                     /*
@@ -75,7 +76,11 @@ namespace FacturacionLiquidacion
                     cblEntero.ValueMember = "DOC_ID_CORP";
                     cblEntero.DataSource = OrdEnt;
                     */
-
+                    if (OrdEnt.Rows.Count>0)
+                    {
+                        txOrigen.Text = OrdEnt.Rows[0]["ORIGIN"].ToString();
+                        txBodega.Text = OrdEnt.Rows[0]["WAR_CODE_DEST"].ToString();
+                    }
                     ((ListBox)cblEntero).DataSource = OrdEnt;
                     ((ListBox)cblEntero).DisplayMember = "PROCESO_ID";
                     ((ListBox)cblEntero).ValueMember = "DOC_ID_CORP";
@@ -92,11 +97,8 @@ namespace FacturacionLiquidacion
 
                     //LLenando los datos de la empresa
                     //cliente = dat_consultas.Consultar_Cliente(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim());
-
                 }
             }
-            
-          
         }
         public void LLenar_Cliente(String _codcliente)
         {
@@ -128,7 +130,7 @@ namespace FacturacionLiquidacion
             string corp_s = "PRODU";
             string group_category = "API";
             int integer_1 = 0, logint_1 = 0;
-            string origin = "PRI";
+            string origin = txOrigen.Text;
             string texto1_10;
             string text1_24 = "10.51.1.11";
             string text2_x = ""; //información de la cabecera de la factura
@@ -141,7 +143,8 @@ namespace FacturacionLiquidacion
             datos_fiscales fiscal = new datos_fiscales();
             Informacion_Adicional info_ad = new Informacion_Adicional();
             validar_datos();
-
+            if (txOrigen.Text == "TAU")
+                cab.codigo_caja = "999";
 
             text2_x = cab.numero_factura + "|" + cab.codigo_cliente + "|" + cab.emision_factura + "|" + cab.vencimiento_factura + "|" + cab.identificacion + "|" + cab.nombre_sub_cliente + "|" +
                               cab.codigo_vendedor + "|" + "US" + "|" + cab.valor_cotizacion + "|" + cab.numero_pagos + "|" + cab.codigo_bodega + "|" + cab.descuento + "|" + cab.codigo_almacen + "|" +
@@ -187,8 +190,8 @@ namespace FacturacionLiquidacion
             logint_1 = 1;
             texto1_10 = "2";
             numdoc_s = "11";
-            local_origen = "PRI";
-            local_destino = "PRI";
+            local_origen = txOrigen.Text;
+            local_destino = txBodega.Text;
             IDConsulta_s = "11-PRODU";
 
             query = "insert into sist_api(CODE_s,CORP_s,GROUP_CATEGORY_s,INTEGER_1,LONGINT_1,ORIGIN,TEXTO1_10,TEXTO1_24,TEXTO2_X,TEXTO3_X,NumDoc_s,Local_origen,Local_destino,IDConsulta_s,Opcion_i,TEXTO6_X)";
@@ -218,7 +221,7 @@ namespace FacturacionLiquidacion
                 }
                 codcola = codcola.TrimEnd(','); //codentero.Substring(codentero.Length-1,1);
             }
-            query = "insert into liquifact.dbo.ordenes_facturadas select * from string_split('"+ codentero +"," + codcola + "',',')";
+            query = "insert into liquifact.dbo.ordenes_facturadas (codigo,referencia) select value, '" + txtProyecto.Text + "-" + txt_SubProyecto.Text + "' from string_split('"+ codentero +"," + codcola + "',',')";
             dat_consultas = new CdaConsultas();
             dat_consultas.Guardar_Datos(query);
 
@@ -244,9 +247,9 @@ namespace FacturacionLiquidacion
             cab.emision_factura = lblFecha.Text;
             cab.vencimiento_factura = dtpHasta.Text;
             cab.codigo_cliente = txtCodCliente.Text;
-            cab.codigo_bodega = "BPT";
-            cab.codigo_almacen = "PRI";
-            cab.origen = "PRI";
+            cab.codigo_bodega = txBodega.Text;
+            cab.codigo_almacen = txOrigen.Text;
+            cab.origen = txOrigen.Text;
             cab.multidimension = ";;" + txtProyecto.Text + ";" + txt_SubProyecto.Text + ";" + txt_identificacion.Text + ";;{0};" + cmbNombreCliente.Text+" LIQ. "+txtLiquidacion.Text+";";  //8 campos
             cab.memo_factura = txtMemo.Text;                                                                                                                                    //cab.multidimension = "";  //8 campos
 
@@ -403,15 +406,15 @@ namespace FacturacionLiquidacion
         //Evento al escoger una liquidación
         private void cmbLiquidaciones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LLenar_Detalle(txtProyecto.Text.Trim(),txt_SubProyecto.Text.Trim(),cmbOrdEntero.Text);
+            LLenar_Detalle(txtProyecto.Text.Trim(),txt_SubProyecto.Text.Trim(),"");
         }
         private void cmbOrdEntero_SelectedIndexChanged(object sender, EventArgs e)
         {
-          LLenar_Detalle(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim(), cmbOrdEntero.Text);
+          LLenar_Detalle(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim(), "");
         }
         private void cmbOrdCola_SelectedIndexChanged(object sender, EventArgs e)
         {
-          LLenar_Detalle(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim(), cmbOrdCola.Text);
+          LLenar_Detalle(txtProyecto.Text.Trim(), txt_SubProyecto.Text.Trim(), "");
         }
 
         private void cmbNombreCliente_SelectedIndexChanged(object sender, EventArgs e)

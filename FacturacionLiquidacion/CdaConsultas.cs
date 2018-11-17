@@ -348,7 +348,6 @@ namespace FacturacionLiquidacion
                 SqlDataReader dr = cmd.ExecuteReader();
                 dt.Load(dr);
                 cnn.Close();
-
                 return dt;
             }
             catch (Exception ex)
@@ -444,6 +443,81 @@ namespace FacturacionLiquidacion
                 cnn.Close();
                 Console.WriteLine("Error al guardar datos en SIst API: " + ex);
                 return 0;
+            }
+        }
+        //COnsultar precios
+        public DataTable Consultar_Precios()
+        {
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Cons_Precios";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnn.Open();
+                DataTable dt = new DataTable();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cnn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        //COnsultar precios
+        public DataTable Consultar_Orden_Clientes()
+        {
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Cons_OrdClientes";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnn.Open();
+                DataTable dt = new DataTable();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cnn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        //COnsultar productos
+        public DataTable Consultar_Productos()
+        {
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Cons_Productos";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnn.Open();
+                DataTable dt = new DataTable();
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                cnn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
