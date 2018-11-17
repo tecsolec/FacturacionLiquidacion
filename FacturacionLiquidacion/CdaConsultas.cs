@@ -520,5 +520,30 @@ namespace FacturacionLiquidacion
                 throw ex;
             }
         }
+        //Delete Cliente
+        public Int32 Delete_Orden_Clientes(String _Cliente)
+        {
+            int res = 0;
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Del_OrdCliente";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codcliente", _Cliente);
+                cnn.Open();
+                res=cmd.ExecuteNonQuery();
+                cnn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return res;
+        }
     }
 }
