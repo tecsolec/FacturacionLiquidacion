@@ -26,7 +26,7 @@ namespace FacturacionLiquidacion
         //((Agregar Clientes))
         private void btAgregarCliente_Click(object sender, EventArgs e)
         {
-            String query = "insert into liquifact.dbo.columnasXcliente (codigo_empresa,orden) select  '" + txCodigoCliente.Text + "', max(orden)+1 from liquifact.dbo.columnasXcliente;";
+            String query = "insert into liquifact.dbo.columnasXcliente (codigo_empresa,nombre_empresa,orden) select  '" + txCodigoCliente.Text + "','" + txNombreCliente.Text + "', max(orden)+1 from liquifact.dbo.columnasXcliente;";
             dat_consultas = new CdaConsultas();
             dat_consultas.Guardar_Datos(query);
             llenar_Clientes();
@@ -56,16 +56,16 @@ namespace FacturacionLiquidacion
             }
             foreach (DataRow row in clientes.Rows)
             {
-                if (row[1].ToString() == "0")
+                if (row[2].ToString() == "0")
                     dt.Columns.Add("PRECIO BASE", typeof(double));
                 else
-                    dt.Columns.Add(row[0].ToString(), typeof(double));
+                    dt.Columns.Add(row[1].ToString(), typeof(double));
                 foreach (DataRow row2 in dt.Rows)
                 {
-                    foreach (DataRow row3 in precios.Select("Orden=" + row[1].ToString()))
+                    foreach (DataRow row3 in precios.Select("Orden=" + row[2].ToString()))
                     {
                         if (row2[0].ToString() == row3[2].ToString())
-                            row2[Convert.ToInt32(row[1].ToString()) + 2] = row3[3].ToString();
+                            row2[Convert.ToInt32(row[2].ToString()) + 2] = row3[3].ToString();
                     }
                 }
             }
@@ -118,11 +118,37 @@ namespace FacturacionLiquidacion
 
         private void btEliminarProducto_Click(object sender, EventArgs e)
         {
-
+            if (cblProductos.CheckedItems.Count > 0)
+            {
+                foreach (DataRowView item in cblProductos.CheckedItems)
+                {
+                    dat_consultas = new CdaConsultas();
+                    dat_consultas.Delete_Productos(item["CODIGO"].ToString());
+                }
+                llenar_Productos();
+                llenar_Precios();
+            }
         }
 
-
-
-       
+        private void btGuardarPrecios_Click(object sender, EventArgs e)
+        {
+            String query = "";
+            dat_consultas = new CdaConsultas();
+            DataTable clientes = new DataTable();
+            clientes = dat_consultas.Consultar_Orden_Clientes();
+            foreach (DataGridViewRow row in dgvPrecios.Rows)
+            {
+                if (query == "")
+                    query = "truncate table LIQUIFACT.dbo.precios; Insert into LIQUIFACT.dbo.precios ( codigo_producto, precio, codigo_empresa, estado) values ";
+                
+                foreach (DataRow rowCli in clientes.Rows)
+                {
+                    query += "('" + row.Cells[0].Value + "',"+ row.Cells[Convert.ToInt32(rowCli[2].ToString())+2].Value.ToString().Replace(",",".") + ",'"+rowCli[1].ToString() + "','A'),";
+                }               
+            }
+            query = query.TrimEnd(','); //codentero.Substring(codentero.Length-1,1);
+            dat_consultas.Guardar_Datos(query);
+        }
+        
     }
 }

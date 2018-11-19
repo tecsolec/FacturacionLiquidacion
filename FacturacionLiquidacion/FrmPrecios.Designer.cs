@@ -50,11 +50,15 @@
             this.txTallaProducto = new System.Windows.Forms.TextBox();
             this.cbEspecieProducto = new System.Windows.Forms.ComboBox();
             this.cbTipoProducto = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txNombreCliente = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrecios)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvPrecios
             // 
+            this.dgvPrecios.AllowUserToAddRows = false;
+            this.dgvPrecios.AllowUserToDeleteRows = false;
             this.dgvPrecios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrecios.Location = new System.Drawing.Point(12, 167);
             this.dgvPrecios.Name = "dgvPrecios";
@@ -161,6 +165,7 @@
             this.btGuardarPrecios.TabIndex = 11;
             this.btGuardarPrecios.Text = "Guardar Precios";
             this.btGuardarPrecios.UseVisualStyleBackColor = true;
+            this.btGuardarPrecios.Click += new System.EventHandler(this.btGuardarPrecios_Click);
             // 
             // label4
             // 
@@ -244,11 +249,29 @@
             this.cbTipoProducto.Size = new System.Drawing.Size(121, 21);
             this.cbTipoProducto.TabIndex = 23;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(171, 53);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(82, 13);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Nombre Cliente:";
+            // 
+            // txNombreCliente
+            // 
+            this.txNombreCliente.Location = new System.Drawing.Point(265, 50);
+            this.txNombreCliente.Name = "txNombreCliente";
+            this.txNombreCliente.Size = new System.Drawing.Size(100, 20);
+            this.txNombreCliente.TabIndex = 24;
+            // 
             // FrmPrecios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(943, 453);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txNombreCliente);
             this.Controls.Add(this.cbTipoProducto);
             this.Controls.Add(this.cbEspecieProducto);
             this.Controls.Add(this.label8);
@@ -304,5 +327,7 @@
         private System.Windows.Forms.TextBox txTallaProducto;
         private System.Windows.Forms.ComboBox cbEspecieProducto;
         private System.Windows.Forms.ComboBox cbTipoProducto;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txNombreCliente;
     }
 }

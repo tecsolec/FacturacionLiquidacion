@@ -545,5 +545,29 @@ namespace FacturacionLiquidacion
             }
             return res;
         }
+        public Int32 Delete_Productos(String _producto)
+        {
+            int res = 0;
+            try
+            {
+                //se declara una variable de tipo SqlConnection
+                cnn = new SqlConnection();
+                //se indica la cadena de conexion
+                cnn.ConnectionString = connetionString;
+                string query = "P_Del_Productos";
+                cmd = new SqlCommand(query, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@codproducto", _producto);
+                cnn.Open();
+                res = cmd.ExecuteNonQuery();
+                cnn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return res;
+        }
     }
 }
