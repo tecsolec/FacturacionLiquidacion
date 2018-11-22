@@ -143,11 +143,12 @@ namespace FacturacionLiquidacion
                 
                 foreach (DataRow rowCli in clientes.Rows)
                 {
-                    query += "('" + row.Cells[0].Value + "',"+ row.Cells[Convert.ToInt32(rowCli[2].ToString())+2].Value.ToString().Replace(",",".") + ",'"+rowCli[1].ToString() + "','A'),";
+                    query += "('" + row.Cells[0].Value + "',"+ row.Cells[Convert.ToInt32(rowCli[2].ToString())+2].Value.ToString().Replace(",",".") + ",'"+rowCli[0].ToString() + "','A'),";
                 }               
             }
             query = query.TrimEnd(','); //codentero.Substring(codentero.Length-1,1);
             dat_consultas.Guardar_Datos(query);
+            llenar_Precios();
         }
         
     }
