@@ -22,20 +22,67 @@ namespace FacturacionLiquidacion
             llenar_Clientes();
             llenar_Productos();
             llenar_Precios();
+            llenar_Especies();
+            llenar_Tipo();
         }
         //((Agregar Clientes))
         private void btAgregarCliente_Click(object sender, EventArgs e)
         {
-            String query = "insert into liquifact.dbo.columnasXcliente (codigo_empresa,nombre_empresa,orden) select  '" + txCodigoCliente.Text + "','" + txNombreCliente.Text + "', max(orden)+1 from liquifact.dbo.columnasXcliente;";
-            dat_consultas = new CdaConsultas();
-            dat_consultas.Guardar_Datos(query);
-            llenar_Clientes();
-            llenar_Precios();
+            if (txNombreCliente.Text != "")
+            {
+                String query = "insert into liquifact.dbo.columnasXcliente (codigo_empresa,nombre_empresa,orden) select  '" + txCodigoCliente.Text + "','" + txNombreCliente.Text + "', max(orden)+1 from liquifact.dbo.columnasXcliente;";
+                dat_consultas = new CdaConsultas();
+                dat_consultas.Guardar_Datos(query);
+                cleanClientes();
+                llenar_Clientes();
+                llenar_Precios();
+            }
         }
         //((Agregar Productos))
         private void btAgregarProducto_Click(object sender, EventArgs e)
         {
-
+            if (txCodigoProducto.Text != "" && txClaseProducto.Text!="" && txTallaProducto.Text!="") { 
+                String nombretipo = ((DataRowView)cbTipoProducto.SelectedItem).Row[1].ToString();
+                String codigopadre = ((DataRowView)cbTipoProducto.SelectedItem).Row[0].ToString();            
+                String query = "insert into liquifact.dbo.LIQ_PRODUCTOS_DETALLE (CODIGO,ESPECIE,TIPO,CLASE,TALLA,CODIGOPADRE) VAlues ('" + txCodigoProducto.Text+ "','" + cbEspecieProducto.Text + "','" + nombretipo + "','" + txClaseProducto.Text + "','" + txTallaProducto.Text + "','" + codigopadre + "');";
+                dat_consultas = new CdaConsultas();
+                dat_consultas.Guardar_Datos(query);
+                cleanProductos();
+                llenar_Productos();
+                llenar_Precios();
+            }
+        }
+        private void cleanProductos()
+        {
+            txCodigoProducto.Text = "";
+            txClaseProducto.Text = "";
+            txTallaProducto.Text = "";
+        }
+        private void cleanClientes()
+        {
+            txCodigoCliente.Text = "";
+            txNombreCliente.Text = "";
+        }
+        private void llenar_Especies()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("CODIGO", typeof(string));
+            dt.Columns.Add("DESCRIPCION", typeof(string));
+            dt.Rows.Add("CAMARON", "CAMARON");
+            cbEspecieProducto.DisplayMember = "CODIGO";
+            cbEspecieProducto.ValueMember = "DESCRIPCION";
+            cbEspecieProducto.DataSource = dt;
+        }
+        private void llenar_Tipo()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("CODIGO", typeof(string));
+            dt.Columns.Add("DESCRIPCION", typeof(string));
+            dt.Rows.Add("PPPRDCAMR007", "ENTERO");
+            dt.Rows.Add("PPPRDCAMR008", "COLA");
+            cbTipoProducto.DisplayMember = "DESCRIPCION";
+            cbTipoProducto.ValueMember = "CODIGO";
+            cbTipoProducto.DataSource = dt;
         }
         private void llenar_Precios()
         {

@@ -290,6 +290,7 @@ namespace FacturacionLiquidacion
                         totalentero += Convert.ToDouble(row.Cells[3].Value.ToString());
                     else
                         totalcola += Convert.ToDouble(row.Cells[3].Value.ToString());
+                    row.Cells[5].Value = totalxproducto;
                     subtotal = subtotal + totalxproducto;
                 }
             }
@@ -328,6 +329,7 @@ namespace FacturacionLiquidacion
             dt.Columns.Add("nomb_Pdto", typeof(string));
             dt.Columns.Add("cantidad", typeof(double));
             dt.Columns.Add("precio", typeof(double));
+            dt.Columns.Add("Subtotal", typeof(double));
             if (!String.IsNullOrEmpty(txtCodCliente.Text))
                 cliente = txtCodCliente.Text;
             codentero = "";
@@ -365,7 +367,8 @@ namespace FacturacionLiquidacion
                     cant = Convert.ToDouble(row[3].ToString());
                 if (row[4].ToString() != "")
                     precio = Convert.ToDouble(row[4].ToString());
-                dt.Rows.Add(codprod, categoria, nomprod, cant , precio);
+                
+                dt.Rows.Add(codprod, categoria, nomprod, cant , precio, precio * cant);
             }
             if (detalle.Rows.Count > 0) { 
                 grdDetalle.DataSource = dt;
@@ -392,11 +395,18 @@ namespace FacturacionLiquidacion
                 //columna precio
                 grdDetalle.Columns[4].HeaderText = "PVP Unit";
                 grdDetalle.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                grdDetalle.Columns[4].DefaultCellStyle.Format = "N2";
+                grdDetalle.Columns[4].DefaultCellStyle.Format = "N5";
                 grdDetalle.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdDetalle.Columns[4].Width = 120;
                 grdDetalle.Columns[4].ReadOnly = false;
-                } else
+                //columna precio
+                grdDetalle.Columns[5].HeaderText = "Subtotal";
+                grdDetalle.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                grdDetalle.Columns[5].DefaultCellStyle.Format = "N2";
+                grdDetalle.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdDetalle.Columns[5].Width = 120;
+                grdDetalle.Columns[5].ReadOnly = true;
+            } else
                 grdDetalle.DataSource = null;
             Actualizar_Totales();
             
